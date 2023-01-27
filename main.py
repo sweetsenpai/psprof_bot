@@ -6,7 +6,7 @@ from telegram.ext import (
     filters,
     InlineQueryHandler,
     CallbackQueryHandler, ContextTypes)
-from telegram import Update,InlineKeyboardMarkup, InlineKeyboardButton, helpers
+from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 import logging
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
@@ -20,7 +20,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         print(bot)
     except:
         print('None')
-    button = InlineKeyboardButton(text='Чат', url='https://telegram.me/<bot_username>?start=1234')
+    button = InlineKeyboardButton(text='Чат', url='https://t.me/SPBprofBot?start=1234')
     await update.message.reply_text('Привет', reply_markup=InlineKeyboardMarkup([[button]]))
     # 3 4 5
     print('----------------------------------------')
@@ -29,7 +29,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 def main() -> None:
-    application = Application.builder().token('5835287590:AAFhPBJr6OLvFLc99m_YJZM71ZnT2ARL3m4').build()
+    application = Application.builder().token().build()
     start_command = CommandHandler('start', start)
     application.add_handler(start_command)
     application.run_polling()
