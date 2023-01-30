@@ -3,6 +3,8 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 
 Base = declarative_base()
 
+# Creat DataBase tables
+
 
 class Topic(Base):
     __tablename__ = 'topics'
@@ -42,7 +44,7 @@ class Review(Base):
     review_rating = sql.Column(name='review_rating', type_=sql.Integer)
     review_moderation = sql.Column(name='review_moderation', type_=sql.BOOLEAN, default=False)
 
-    def __int__(self, review_id, user_id , user_master, user_name, review_text, review_rating, review_moderation):
+    def __int__(self, review_id, user_id, user_master, user_name, review_text, review_rating, review_moderation):
         self.review_id = review_id
         self.user_id = user_id
         self.user_master = user_master
