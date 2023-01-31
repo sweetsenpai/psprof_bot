@@ -16,7 +16,7 @@ class Topic(Base):
         self.title = titel
 
     def __repr__(self):
-        return {'topic_id': self.topic_id, 'titel': self.title}
+        return f'{self.topic_id},{self.title}'
 
 
 class Master(Base):
@@ -31,7 +31,7 @@ class Master(Base):
         self.info = info
 
     def __repr__(self):
-        return {'master_id': self.master_id, 'topic_master': self.topic_master, 'info': self.info}
+        return f'{self.master_id}, {self.topic_master}, {self.info}'
 
 
 class Review(Base):
@@ -54,9 +54,8 @@ class Review(Base):
         self.review_moderation = review_moderation
 
     def __repr__(self):
-        return {'review_id ': self.review_id, 'user_id': self.user_id, 'user_master': self.user_master,
-                 'user_name': self.user_name, 'review_text': self.review_text, 'review_rating': self.review_rating,
-                'review_moderation': self.review_moderation}
+        return f'{self.review_id}, {self.user_id}, {self.user_master},{self.user_name}, {self.review_text}, ' \
+               f'{self.review_rating},{self.review_moderation}'
 
 
 engine = sql.create_engine('sqlite:///psprof.db', echo=True)
@@ -64,10 +63,16 @@ engine = sql.create_engine('sqlite:///psprof.db', echo=True)
 Base.metadata.create_all(bind=engine)
 Session = sessionmaker(bind=engine)
 session = Session()
+topic1 = Topic(topic_id=3, titel='A')
+topic2 = Topic(topic_id=4, titel='B')
+topic3 = Topic(topic_id=5, titel='C')
+session.add_all([topic3, topic2, topic1])
+session.commit()
+print('---------------------')
+result = session.query(Topic).order_by(Topic.topic_id).all()
 
-# topic = Topic(topic_id=1, titel='A')
-# master = Master(topic_master=1, info='Мастер: Костя, отличный парень!')
-# review = Review(user_id=1, user_master=1, user_name='SweetSenpai', review_text='Класс!',
-#                 review_rating=5)
-# session.add(topic)
-# session.commit()
+for r in result:
+    print(r)
+
+
+
