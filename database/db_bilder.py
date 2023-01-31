@@ -16,7 +16,7 @@ class Topic(Base):
         self.title = titel
 
     def __repr__(self):
-        return f'{self.topic_id},{self.title}'
+        return f'{self.topic_id}, {self.title}'
 
 
 class Master(Base):
@@ -63,16 +63,12 @@ engine = sql.create_engine('sqlite:///psprof.db', echo=True)
 Base.metadata.create_all(bind=engine)
 Session = sessionmaker(bind=engine)
 session = Session()
-topic1 = Topic(topic_id=3, titel='A')
-topic2 = Topic(topic_id=4, titel='B')
-topic3 = Topic(topic_id=5, titel='C')
-session.add_all([topic3, topic2, topic1])
-session.commit()
-print('---------------------')
-result = session.query(Topic).order_by(Topic.topic_id).all()
-
-for r in result:
-    print(r)
+# topic1 = Topic(topic_id=3, titel='A')
+# topic2 = Topic(topic_id=4, titel='B')
+# topic3 = Topic(topic_id=5, titel='C')
+# session.add_all([topic3, topic2, topic1])
+# session.commit()
+# print('---------------------')
 
 
 
