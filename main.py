@@ -7,8 +7,10 @@ from telegram.ext import (
     InlineQueryHandler,
     CallbackQueryHandler, ContextTypes)
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
-
+from admin.topic_conversation import topic_conversation
 import logging
+import os
+token = os.environ['TOKEN']
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
 )
@@ -30,9 +32,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 def main() -> None:
-    application = Application.builder().token().build()
+    application = Application.builder().token(token).build()
     start_command = CommandHandler('start', start)
     application.add_handler(start_command)
+    application.add_handler(topic_conversation)
     application.run_polling()
 
 

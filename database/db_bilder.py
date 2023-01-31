@@ -1,6 +1,6 @@
 import sqlalchemy as sql
 from sqlalchemy.orm import sessionmaker, declarative_base
-
+import os
 Base = declarative_base()
 
 # Creat DataBase tables
@@ -58,17 +58,12 @@ class Review(Base):
                f'{self.review_rating},{self.review_moderation}'
 
 
-engine = sql.create_engine('sqlite:///psprof.db', echo=True)
+if os.path.exists('psprof.db') is False:
+    engine = sql.create_engine('sqlite:///psprof.db', echo=True)
+    Base.metadata.create_all(bind=engine)
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
-Base.metadata.create_all(bind=engine)
-Session = sessionmaker(bind=engine)
-session = Session()
-# topic1 = Topic(topic_id=3, titel='A')
-# topic2 = Topic(topic_id=4, titel='B')
-# topic3 = Topic(topic_id=5, titel='C')
-# session.add_all([topic3, topic2, topic1])
-# session.commit()
-# print('---------------------')
 
 
 
