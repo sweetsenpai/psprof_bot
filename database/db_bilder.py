@@ -1,6 +1,7 @@
 import sqlalchemy as sql
 from sqlalchemy.orm import sessionmaker, declarative_base
 import os
+db_path = 'sqlite:///' + os.environ['DB']
 Base = declarative_base()
 
 # Creat DataBase tables
@@ -58,12 +59,15 @@ class Review(Base):
                f'{self.review_rating},{self.review_moderation}'
 
 
-if os.path.exists('psprof.db') is False:
+if os.path.exists(db_path) is False:
     engine = sql.create_engine('sqlite:///psprof.db', echo=True)
     Base.metadata.create_all(bind=engine)
     Session = sessionmaker(bind=engine)
     session = Session()
-
+else:
+    engine = sql.create_engine(db_path, echo=True)
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
 
 

@@ -3,3 +3,4 @@
 /database/db_schema.dbs
 *.xml
 *.iml
+*.pyc

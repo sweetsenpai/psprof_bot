@@ -1,13 +1,10 @@
 from telegram.ext import (
     Application,
     CommandHandler,
-    ConversationHandler,
-    MessageHandler,
-    filters,
-    InlineQueryHandler,
-    CallbackQueryHandler, ContextTypes)
+    ContextTypes)
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
-from admin.topic_conversation import topic_conversation
+from admin.topic_conversation import new_topic_conversation
+from admin.master_conversation import new_master_conversation
 import logging
 import os
 token = os.environ['TOKEN']
@@ -35,7 +32,8 @@ def main() -> None:
     application = Application.builder().token(token).build()
     start_command = CommandHandler('start', start)
     application.add_handler(start_command)
-    application.add_handler(topic_conversation)
+    application.add_handler(new_topic_conversation)
+    application.add_handler(new_master_conversation)
     application.run_polling()
 
 

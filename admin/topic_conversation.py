@@ -2,8 +2,7 @@ from telegram.ext import (ConversationHandler, ContextTypes, MessageHandler, fil
 from telegram import Update
 from database.db_bilder import Topic
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
-import logging
+from sqlalchemy.orm import sessionmaker
 
 engine = create_engine('sqlite:///psprof.db', echo=True)
 Session = sessionmaker(bind=engine)
@@ -32,7 +31,7 @@ async def stop_conversation(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text('Диалог остановлен')
     return ConversationHandler.END
 
-topic_conversation = ConversationHandler(
+new_topic_conversation = ConversationHandler(
     entry_points=[MessageHandler(filters.Regex('Создать новый топик'), new_topic_start)],
     states={
         TOPIC_TITLE: [MessageHandler(filters.TEXT, new_topic_end)]
