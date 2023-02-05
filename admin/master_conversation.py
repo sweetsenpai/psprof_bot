@@ -2,7 +2,7 @@ from telegram.ext import ConversationHandler, ContextTypes, MessageHandler, filt
 from telegram import Update, ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup
 from database.db_bilder import Topic, Master, session
 from admin.topic_conversation import stop_conversation
-from sqlalchemy import update as sql_update
+
 TOPIC, MASTER_INFO = range(2)
 
 
