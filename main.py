@@ -15,11 +15,10 @@ logger = logging.getLogger(__name__)
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    try:
-        bot = context.args
-        print(bot)
-    except:
-        print('None')
+
+    bot = context.args
+    print(bot)
+
     button = InlineKeyboardButton(text='Чат', url='https://t.me/SPBprofBot?start=1234')
     await update.message.reply_text('Привет', reply_markup=InlineKeyboardMarkup([[button]]))
     # 3 4 5

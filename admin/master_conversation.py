@@ -37,6 +37,8 @@ async def new_master_end(update: Update, context: ContextTypes.DEFAULT_TYPE):
     update_master.info = master_info
     session.commit()
     await update.message.reply_text(text='Новый мастер добавлен!')
+    await publish_new_master(context, update_master)
+    await update.message.reply_text(text='Запись опубликована в группе.')
     return ConversationHandler.END
 
 new_master_conversation = ConversationHandler(
@@ -49,6 +51,8 @@ new_master_conversation = ConversationHandler(
 
 
 async def publish_new_master(context: ContextTypes.DEFAULT_TYPE,  master):
-    msg_content = master.info
-    leav_review = InlineKeyboardButton(text='Оставить отзыв')
+    review = InlineKeyboardButton(text='Отзывы', callback_data=f'VR,{master.master_id}')
+    leav_review = InlineKeyboardButton(text='Оставить отзыв', url=f'https://t.me/SPBprofBot?start={master.master_id}')
+    await context.bot.send_message(chat_id=-1001358438088, message_thread_id=master.topic_master, text=master.info,
+                                   reply_markup=InlineKeyboardMarkup([[review], [leav_review]]))
     return
