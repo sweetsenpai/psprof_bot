@@ -3,13 +3,14 @@ from telegram import Update, ReplyKeyboardMarkup, KeyboardButton, InlineKeyboard
 from database.db_bilder import Topic, Master, session
 from admin.topic_conversation import stop_conversation
 
-TOPIC, MASTER_INFO = range(2)
+TOPIC, COMPANY, NAME, PHONE, ADDRES, SPEC, OPTIONAL = range(7)
 
 
 def create_topic_keyboard():
     topics = session.query(Topic).all()
     button_list = []
     for topic in topics:
+
         button_list.append([KeyboardButton(text=topic.title)])
     return ReplyKeyboardMarkup(keyboard=button_list)
 
@@ -20,39 +21,108 @@ async def new_master_topic(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return TOPIC
 
 
-async def new_master_info(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    new_master_topic_label = update.message.text
-    await update.message.reply_text(text='Введите текст объявления.')
-    print(new_master_topic)
-    topic_master_id = session.query(Topic).where(Topic.title == new_master_topic_label).one().topic_id
-    print(topic_master_id)
-    session.add(Master(topic_master=topic_master_id, info='whaiting to update'))
+async def new_master_company_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    master_topic_label = update.message.text
+    topic_master_id = session.query(Topic).where(Topic.title == master_topic_label).one().topic_id
+    session.add(Master(topic_master=topic_master_id, optional='whaiting to update'))
     session.commit()
-    return MASTER_INFO
+    await update.message.reply_text(text='Введи название организации или нажми /skip если это поле не требуется.')
+    return COMPANY
+
+
+async def new_master_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    company_name = update.message.text
+    if company_name == '/skip':
+        pass
+    else:
+        session.query(Master).where(Master.optional == 'whaiting to update').one().company_name = company_name
+        session.commit()
+
+    await update.message.reply_text(text='Введи имя мастера или нажми /skip если это поле не требуется.')
+    return NAME
+
+
+async def new_master_phone(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    master_name = update.message.text
+    if master_name == '/skip':
+        pass
+    else:
+        session.query(Master).where(Master.optional == 'whaiting to update').one().name = master_name
+        session.commit()
+    await update.message.reply_text(text='Введи контактный номер мастера или организации')
+
+    return PHONE
+
+
+async def new_master_addres(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    phone = update.message.text
+    session.query(Master).where(Master.optional == 'whaiting to update').one().phone = phone
+    session.commit()
+    await update.message.reply_text(text='Введи адрес мастера/организации или нажми /skip если это поле не требуется.')
+    return ADDRES
+
+
+async def new_master_specialization(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    addres = update.message.text
+    if addres == '/skip':
+        pass
+    else:
+        session.query(Master).where(Master.optional == 'whaiting to update').one().addres = addres
+        session.commit()
+    await update.message.reply_text(text='Введи специализацию мастера или нажми /skip если это поле не требуется.')
+    return SPEC
+
+
+async def new_master_optional(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    spec = update.message.text
+    if spec == '/skip':
+        pass
+    else:
+        session.query(Master).where(Master.optional == 'whaiting to update').one().specialization = spec
+        session.commit()
+    await update.message.reply_text(text='Введи дополнительные данные которые могут быть полезны клиентам,'
+                                         ' или нажми /skip если это поле не требуется.')
+    return OPTIONAL
 
 
 async def new_master_end(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    master_info = update.message.text
-    update_master = session.query(Master).where(Master.info == 'whaiting to update').one()
-    update_master.info = master_info
-    session.commit()
-    await update.message.reply_text(text='Новый мастер добавлен!')
-    await publish_new_master(context, update_master)
-    await update.message.reply_text(text='Запись опубликована в группе.')
+    optional = update.message.text
+    new_master = session.query(Master).where(Master.optional == 'whaiting to update').one()
+    if optional == '/skip':
+        new_master.optional = None
+        session.commit()
+    else:
+        new_master.optional = optional
+        session.commit()
+    await publish_new_master(context, Master(new_master))
+    await update.message.reply_text('Новый мастер успешно добавлен в БД и запись о нем опубликованна в соответствующем топике.')
     return ConversationHandler.END
-
-new_master_conversation = ConversationHandler(
-    entry_points=[MessageHandler(filters.Regex('Добавить нового мастера'), new_master_topic)],
-    states={
-        TOPIC: [MessageHandler(filters.TEXT, new_master_info)],
-        MASTER_INFO: [MessageHandler(filters.TEXT, new_master_end)]
-    },
-    fallbacks=[CommandHandler('stop', stop_conversation)])
 
 
 async def publish_new_master(context: ContextTypes.DEFAULT_TYPE,  master):
-    review = InlineKeyboardButton(text='Отзывы', callback_data=f'VR,{master.master_id}')
-    leav_review = InlineKeyboardButton(text='Оставить отзыв', url=f'https://t.me/SPBprofBot?start={master.master_id}')
-    await context.bot.send_message(chat_id=-1001358438088, message_thread_id=master.topic_master, text=master.info,
-                                   reply_markup=InlineKeyboardMarkup([[review], [leav_review]]))
+    print(master)
+    review = InlineKeyboardButton(text='Отзывы', callback_data=f'VR,{master["master_id"]}')
+    leav_review = InlineKeyboardButton(text='Оставить отзыв', url=f'https://t.me/SPBprofBot?start={master["master_id"]}')
+    transleit_dict = {'company_name': 'Компания: ', 'name': 'Имя: ', 'phone': 'Телефон: ', 'addres': 'Адрес: ', 'specialization': 'Специализация: ', 'optional': ''}
+    msg = ''
+    for key, values in master.items():
+        if values is not None:
+            msg += f' {transleit_dict[key]}<i>{values}<i>\n'
+
+    x = await context.bot.send_message(chat_id=-1001358438088, message_thread_id=master.topic_master, text=msg,
+                                       reply_markup=InlineKeyboardMarkup([[review], [leav_review]]), parse_mode='HTML')
+    print(x)
     return
+
+new_master_conversation= ConversationHandler(
+    entry_points=[MessageHandler(filters.Regex('Добавить нового мастера.'), new_master_topic)],
+    states={
+        TOPIC: [MessageHandler(filters.TEXT, new_master_company_name)],
+        COMPANY: [MessageHandler(filters.TEXT, new_master_name)],
+        NAME:  [MessageHandler(filters.TEXT, new_master_phone)],
+        PHONE:  [MessageHandler(filters.TEXT, new_master_addres)],
+        ADDRES:  [MessageHandler(filters.TEXT, new_master_specialization)],
+        SPEC:  [MessageHandler(filters.TEXT, new_master_optional)],
+        OPTIONAL:  [MessageHandler(filters.TEXT, new_master_end)]
+    }, fallbacks=[CommandHandler('stop', stop_conversation)]
+)
