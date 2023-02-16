@@ -16,8 +16,14 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+async def test(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await context.bot.forwardMessage(chat_id=352354383, from_chat_id='@spb_test123', message_id=177)
+    return
+
+
 def main() -> None:
     application = Application.builder().token(token).build()
+    application.add_handler(CommandHandler('test', test))
     application.add_handler(new_comment_conversation)
     application.add_handler(new_topic_conversation)
     application.add_handler(new_master_conversation)
