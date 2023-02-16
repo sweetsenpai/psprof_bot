@@ -94,27 +94,27 @@ async def new_master_end(update: Update, context: ContextTypes.DEFAULT_TYPE):
     else:
         new_master.optional = optional
         session.commit()
-    await publish_new_master(context, Master(new_master))
+    await publish_new_master(context, new_master)
     await update.message.reply_text('Новый мастер успешно добавлен в БД и запись о нем опубликованна в соответствующем топике.')
     return ConversationHandler.END
 
 
-async def publish_new_master(context: ContextTypes.DEFAULT_TYPE,  master):
+async def publish_new_master(context: ContextTypes.DEFAULT_TYPE,  master: Master):
     print(master)
-    review = InlineKeyboardButton(text='Отзывы', callback_data=f'VR,{master["master_id"]}')
-    leav_review = InlineKeyboardButton(text='Оставить отзыв', url=f'https://t.me/SPBprofBot?start={master["master_id"]}')
-    transleit_dict = {'company_name': 'Компания: ', 'name': 'Имя: ', 'phone': 'Телефон: ', 'addres': 'Адрес: ', 'specialization': 'Специализация: ', 'optional': ''}
+    review = InlineKeyboardButton(text='Отзывы', callback_data=f'VR,{master.master_id}')
+    leav_review = InlineKeyboardButton(text='Оставить отзыв', url=f'https://t.me/SPBprofBot?start={master.master_id}')
     msg = ''
-    for key, values in master.items():
+    for key, values in master.__msgdict__().items():
         if values is not None:
-            msg += f' {transleit_dict[key]}<i>{values}<i>\n'
+            msg += f'{key}: <i>{values}</i>\n'
 
-    x = await context.bot.send_message(chat_id=-1001358438088, message_thread_id=master.topic_master, text=msg,
+    x = await context.bot.send_message(chat_id='@spb_test123', message_thread_id=master.topic_master, text=msg,
                                        reply_markup=InlineKeyboardMarkup([[review], [leav_review]]), parse_mode='HTML')
-    print(x)
+    master.msg_id = x['message_id']
+    session.commit()
     return
 
-new_master_conversation= ConversationHandler(
+new_master_conversation = ConversationHandler(
     entry_points=[MessageHandler(filters.Regex('Добавить нового мастера.'), new_master_topic)],
     states={
         TOPIC: [MessageHandler(filters.TEXT, new_master_company_name)],
@@ -126,3 +126,4 @@ new_master_conversation= ConversationHandler(
         OPTIONAL:  [MessageHandler(filters.TEXT, new_master_end)]
     }, fallbacks=[CommandHandler('stop', stop_conversation)]
 )
+

@@ -24,6 +24,7 @@ class Master(Base):
     __tablename__ = 'masters'
     master_id = sql.Column(name='master_id', type_=sql.Integer, primary_key=True)
     topic_master = sql.Column(sql.Integer, sql.ForeignKey('topics.topic_id'))
+    msg_id = sql.Column(name='msg_id', type_=sql.Integer)
     company_name = sql.Column(name='company_name', type_=sql.String)
     name = sql.Column(name='name', type_=sql.String)
     phone = sql.Column(name='phone', type_=sql.String)
@@ -31,8 +32,9 @@ class Master(Base):
     specialization = sql.Column(name='specialization', type_=sql.String)
     optional = sql.Column(name='optional', type_=sql.String)
 
-    def __int__(self, master_id, topic_master,company_name , name, phone, addres, specialization, optional):
+    def __int__(self, master_id, msg_id, topic_master, company_name, name, phone, addres, specialization, optional):
         self.master_id = master_id
+        self.msg_id = msg_id
         self.topic_master = topic_master
         self.company_name = company_name
         self.name = name
@@ -42,8 +44,12 @@ class Master(Base):
         self.optional = optional
 
     def __repr__(self):
-        return f'{self.master_id}, {self.topic_master}, {self.company_name},{self.name}, {self.phone}, {self.addres},' \
+        return f'{self.master_id},{self.msg_id} ,{self.topic_master}, {self.company_name},{self.name}, {self.phone}, {self.addres},' \
                f' {self.addres}, {self.specialization}, {self.optional}'
+
+    def __msgdict__(self):
+        return {'Компания': self.company_name, 'Имя': self.name, 'Номер': self.phone, 'Адрес': self.addres, 'Специализация': self.specialization,
+                'Дополнительно': self.optional}
 
 
 class Review(Base):
