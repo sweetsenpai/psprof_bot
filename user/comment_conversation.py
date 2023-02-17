@@ -1,5 +1,5 @@
 from telegram.ext import ConversationHandler, ContextTypes, MessageHandler, filters, CommandHandler, CallbackQueryHandler
-from telegram import Update, ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from database.db_bilder import Master, Review, session
 from admin.topic_conversation import stop_conversation
 
@@ -26,13 +26,14 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def leave_comment(update: Update, context: ContextTypes.DEFAULT_TYPE):
-
     raitng = update.callback_query.data
-    await update.callback_query.answer()
-    session.query(Review).where(Review.user_id == update.callback_query.from_user.id and Review.review_text == 'in progress').first().review_rating = raitng
+    print(raitng)
+    print('----------------------------------------------')
+    session.query(Review).where(Review.user_id == update.callback_query.from_user.id).where(Review.review_text == 'in progress').first().review_rating = raitng
     session.commit()
     await context.bot.sendMessage(chat_id=update.callback_query.from_user.id,
                                   text='Пришлите ваш отзыв.')
+    await update.callback_query.answer()
     return COMMENT
 
 
@@ -48,7 +49,7 @@ async def end(update: Update, context: ContextTypes.DEFAULT_TYPE):
 new_comment_conversation = ConversationHandler(
     entry_points=[CommandHandler('start', start)],
     states={
-        RAITING: [CallbackQueryHandler(leave_comment,)],
+        RAITING: [CallbackQueryHandler(pattern='[1-5]', callback=leave_comment)],
         COMMENT: [MessageHandler(filters.TEXT, end)]},
     fallbacks=[CommandHandler('stop', stop_conversation)])
 
@@ -57,6 +58,7 @@ async def send_comment_to_modderation(context: ContextTypes.DEFAULT_TYPE, review
     message_master_id = session.query(Master).where(Master.master_id == review.user_master).one().msg_id
     await context.bot.forwardMessage(chat_id=352354383, from_chat_id='@spb_test123', message_id=message_master_id)
     msg = f'НОВЫЙ ОТЗЫВ!\n Пользователь: @{review.user_name}\n Оценка: {review.review_rating}⭐️\n {review.review_text}'
-    admin_review_keyboard = InlineKeyboardMarkup([[InlineKeyboardButton(text='Опубликовать', callback_data='PR'), InlineKeyboardButton(text='Отклонить', callback_data='DR')]])
+    admin_review_keyboard = InlineKeyboardMarkup([[InlineKeyboardButton(text='Опубликовать', callback_data=f'PR,{review.review_id}'),
+                                                   InlineKeyboardButton(text='Отклонить', callback_data=f'DR,{review.review_id}')]])
     await context.bot.sendMessage(chat_id=352354383, text=msg, reply_markup=admin_review_keyboard)
     return
