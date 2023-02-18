@@ -8,7 +8,7 @@ RAITING, COMMENT = range(2)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
-    parametr = context.args[0]
+    parametr = context.args
     if parametr is None:
         return ConversationHandler.END
     inline_raiting = InlineKeyboardMarkup([[InlineKeyboardButton(text= '⭐️⭐️⭐️⭐️⭐️', callback_data=5)],
@@ -19,7 +19,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(text='Оцените мастера по шкале от 1 до 5', reply_markup=inline_raiting)
     session.add(Review(user_id=update.message.from_user.id,
                        user_name=update.message.from_user.username,
-                       user_master=int(parametr),
+                       user_master=int(parametr[0]),
                        review_text='in progress'))
     session.commit()
     return RAITING
