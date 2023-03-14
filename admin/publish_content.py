@@ -81,8 +81,11 @@ async def raiting_update(context: ContextTypes.DEFAULT_TYPE):
     for master in masters:
         avg_reiting = 0
         reviews = session.query(Review).where(Review.user_master == master.master_id).where(Review.review_moderation == 1).all()
+        if len(reviews) == 0:
+            continue
         for review in reviews:
             avg_reiting += review.review_rating
+
         avg_reiting = avg_reiting/len(reviews)
         msg = ''
         for key, values in master.__msgdict__().items():

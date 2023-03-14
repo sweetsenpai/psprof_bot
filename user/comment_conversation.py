@@ -19,12 +19,12 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     parametr = context.args
     print(parametr)
     if not parametr:
-        if update.message.from_user.id == 3523543831:
-            await main_board(update, update)
-            return ConversationHandler.END
-        else:
-            await update.message.reply_text(text='Я нужен только для отзывов...')
-            return ConversationHandler.END
+       # if update.message.from_user.id == 352354383:
+        await main_board(update, update)
+        return ConversationHandler.END
+        # else:
+        #     await update.message.reply_text(text='Я нужен только для отзывов...')
+        #     return ConversationHandler.END
     if re.search('[a-zA-Z]', parametr[0]):
         master = ''.join(re.findall(r'\d+', parametr[0]))
         await show_review_star(update, context, master_id=int(master))
