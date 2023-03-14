@@ -1,11 +1,12 @@
-from telegram.ext import Application,CommandHandler, CallbackQueryHandler, ContextTypes, AIORateLimiter
-from telegram import Update, KeyboardButton, ReplyKeyboardMarkup
+from telegram.ext import Application, CommandHandler, CallbackQueryHandler, AIORateLimiter
 from admin.publish_content import aprove_review, decline_review, show_review, master_card, raiting_update
 from admin.topic_conversation import new_topic_conversation
 from admin.master_conversation import new_master_conversation
-from user.comment_conversation import new_comment_conversation
+from user.comment_conversation import new_comment_conversation, main_board
+from serverbuild.server import get_https
 import logging
 import os
+
 token = os.environ['TOKEN']
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
@@ -13,10 +14,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-async def main_board(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    admin_keyboard = ReplyKeyboardMarkup([[KeyboardButton('Добавить нового мастера.')], [KeyboardButton('Создать новый топик')]])
-    await update.message.reply_text(text='Выбери действие', reply_markup=admin_keyboard)
-    return
+PORT = int(os.environ.get('PORT', '50'))
 
 
 def main() -> None:
@@ -31,7 +29,9 @@ def main() -> None:
     application.add_handler(new_topic_conversation)
     application.add_handler(new_master_conversation)
     application.job_queue.run_repeating(callback=raiting_update, interval=30, job_kwargs={'misfire_grace_time': 60})
-    application.run_polling()
+    # application.run_polling()
+    application.run_webhook(port=PORT, url_path=token, webhook_url=f'{get_https()}/{token}',
+                            listen="0.0.0.0")
 
 
 if __name__ == '__main__':

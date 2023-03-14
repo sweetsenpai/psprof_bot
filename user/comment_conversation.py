@@ -1,5 +1,5 @@
 from telegram.ext import ConversationHandler, ContextTypes, MessageHandler, filters, CommandHandler, CallbackQueryHandler
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, KeyboardButton, ReplyKeyboardMarkup
 from database.db_bilder import Master, Review, session
 from admin.topic_conversation import stop_conversation
 from admin.publish_content import show_review_star
@@ -8,12 +8,23 @@ import re
 RAITING, COMMENT = range(2)
 
 
+async def main_board(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    admin_keyboard = ReplyKeyboardMarkup([[KeyboardButton('Добавить нового мастера.')], [KeyboardButton('Создать новый топик')]])
+    await update.message.reply_text(text='Выбери действие', reply_markup=admin_keyboard)
+    return
+
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     parametr = context.args
     print(parametr)
-    if parametr is None:
-        return ConversationHandler.END
+    if not parametr:
+        if update.message.from_user.id == 3523543831:
+            await main_board(update, update)
+            return ConversationHandler.END
+        else:
+            await update.message.reply_text(text='Я нужен только для отзывов...')
+            return ConversationHandler.END
     if re.search('[a-zA-Z]', parametr[0]):
         master = ''.join(re.findall(r'\d+', parametr[0]))
         await show_review_star(update, context, master_id=int(master))
