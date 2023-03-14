@@ -2,6 +2,8 @@ from telegram.ext import ConversationHandler, ContextTypes, MessageHandler, filt
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from database.db_bilder import Master, Review, session
 from admin.topic_conversation import stop_conversation
+from admin.publish_content import show_review_star
+import re
 
 RAITING, COMMENT = range(2)
 
@@ -9,7 +11,12 @@ RAITING, COMMENT = range(2)
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     parametr = context.args
+    print(parametr)
     if parametr is None:
+        return ConversationHandler.END
+    if re.search('[a-zA-Z]', parametr[0]):
+        master = ''.join(re.findall(r'\d+', parametr[0]))
+        await show_review_star(update, context, master_id=int(master))
         return ConversationHandler.END
     inline_raiting = InlineKeyboardMarkup([[InlineKeyboardButton(text= '⭐️⭐️⭐️⭐️⭐️', callback_data=5)],
                                            [InlineKeyboardButton(text= '⭐️⭐️⭐️⭐️', callback_data=4)],

@@ -100,7 +100,6 @@ async def new_master_end(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def publish_new_master(context: ContextTypes.DEFAULT_TYPE,  master: Master):
-    review = InlineKeyboardButton(text='Отзывы', callback_data=f'VR,{master.master_id},-1')
     leav_review = InlineKeyboardButton(text='Оставить отзыв', url=f'https://t.me/SPBprofBot?start={master.master_id}')
     msg = ''
     for key, values in master.__msgdict__().items():
@@ -108,7 +107,7 @@ async def publish_new_master(context: ContextTypes.DEFAULT_TYPE,  master: Master
             msg += f'{key}: <i>{values}</i>\n'
 
     x = await context.bot.send_message(chat_id='@spb_test123', message_thread_id=master.topic_master, text=msg,
-                                       reply_markup=InlineKeyboardMarkup([[review], [leav_review]]), parse_mode='HTML')
+                                       reply_markup=InlineKeyboardMarkup([[leav_review]]), parse_mode='HTML')
     master.msg_id = x['message_id']
     session.commit()
     return

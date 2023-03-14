@@ -1,6 +1,6 @@
 from telegram.ext import Application,CommandHandler, CallbackQueryHandler, ContextTypes, AIORateLimiter
 from telegram import Update, KeyboardButton, ReplyKeyboardMarkup
-from admin.publish_content import aprove_review, decline_review, show_review, master_card
+from admin.publish_content import aprove_review, decline_review, show_review, master_card, raiting_update
 from admin.topic_conversation import new_topic_conversation
 from admin.master_conversation import new_master_conversation
 from user.comment_conversation import new_comment_conversation
@@ -30,6 +30,7 @@ def main() -> None:
     application.add_handler(new_comment_conversation)
     application.add_handler(new_topic_conversation)
     application.add_handler(new_master_conversation)
+    application.job_queue.run_repeating(callback=raiting_update, interval=30, job_kwargs={'misfire_grace_time': 60})
     application.run_polling()
 
 
