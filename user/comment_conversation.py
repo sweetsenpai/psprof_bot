@@ -75,6 +75,7 @@ new_comment_conversation = ConversationHandler(
 async def send_comment_to_modderation(context: ContextTypes.DEFAULT_TYPE, review: Review):
     message_master_id = session.query(Master).where(Master.master_id == review.user_master).one().msg_id
     await context.bot.forwardMessage(chat_id=352354383, from_chat_id='@spb_test123', message_id=message_master_id)
+    await context.bot.forwardMessage(chat_id=366585, from_chat_id='@spb_test123', message_id=message_master_id)
     msg = f'НОВЫЙ ОТЗЫВ!\n Пользователь: @{review.user_name}\n Оценка: {review.review_rating}⭐️\n {review.review_text}'
     admin_review_keyboard = InlineKeyboardMarkup([[InlineKeyboardButton(text='Опубликовать', callback_data=f'PR,{review.review_id}'),
                                                    InlineKeyboardButton(text='Отклонить', callback_data=f'DR,{review.review_id}')]])
