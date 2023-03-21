@@ -1,8 +1,10 @@
-from telegram.ext import Application, CommandHandler, CallbackQueryHandler, AIORateLimiter
+from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, \
+    AIORateLimiter, filters
 from admin.publish_content import aprove_review, decline_review, show_review, master_card, raiting_update
 from admin.topic_conversation import new_topic_conversation
 from admin.master_conversation import new_master_conversation
 from user.comment_conversation import new_comment_conversation, main_board
+from admin.delete_content import del_master_menu, del_topic_menu, del_master
 from serverbuild.server import get_https
 import logging
 import os
@@ -25,6 +27,9 @@ def main() -> None:
     application.add_handler(CallbackQueryHandler(pattern='DR,', callback=decline_review))
     application.add_handler(CallbackQueryHandler(pattern='VR,', callback=show_review))
     application.add_handler(CallbackQueryHandler(pattern='BM,', callback=master_card))
+    application.add_handler(CallbackQueryHandler(pattern='DLT,', callback=del_master_menu))
+    application.add_handler(CallbackQueryHandler(pattern='DLM,', callback=del_master))
+    application.add_handler(MessageHandler(filters.Regex('Удалить мастера'), del_topic_menu))
     application.add_handler(new_comment_conversation)
     application.add_handler(new_topic_conversation)
     application.add_handler(new_master_conversation)

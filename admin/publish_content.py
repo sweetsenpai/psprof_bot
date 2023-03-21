@@ -37,7 +37,11 @@ async def show_review(update: Update, context: ContextTypes.DEFAULT_TYPE):
     comment_keyboard = InlineKeyboardMarkup([[InlineKeyboardButton(text='◀️', callback_data=f'VR,{show_master_id},{show_review_id + 1} '),
                                               InlineKeyboardButton(text='▶️', callback_data=f'VR,{show_master_id},{show_review_id - 1} ')],
                                              [InlineKeyboardButton(text='Назад',  url=f'https://t.me/spb_test123/{master_msg}')]])
-    msg = f'{comments[show_review_id].review_text}\n{comments[show_review_id].review_rating}/5⭐️'
+    if abs(show_review_id)!=0:
+        msg = f'{comments[show_review_id].review_text}\n{comments[show_review_id].review_rating}/5⭐️\n\n<i>{comments[show_review_id].time}\n{abs(show_review_id)}/{len(comments)}</i>'
+    else:
+        msg = f'{comments[show_review_id].review_text}\n{comments[show_review_id].review_rating}/5⭐️\n\n<i>{comments[show_review_id].time}\n{len(comments)}/{len(comments)}</i>'
+
     await update.callback_query.edit_message_text(text=msg, reply_markup=comment_keyboard, parse_mode='HTML')
     return
 
@@ -57,7 +61,7 @@ async def show_review_star(update: Update, context: ContextTypes.DEFAULT_TYPE, m
           InlineKeyboardButton(text='▶️', callback_data=f'VR,{show_master_id},{show_review_id - 1} ')],
          [InlineKeyboardButton(text='Назад', url=f'https://t.me/spb_test123/{master_msg}')]])
 
-    msg = f'{comments[show_review_id].review_text}\n{comments[show_review_id].review_rating}/5⭐️'
+    msg = f'{comments[show_review_id].review_text}\n{comments[show_review_id].review_rating}/5⭐️\n\n<i>{comments[show_review_id].time}\n1/{len(comments)}</i>'
     await update.message.reply_text(text=msg, reply_markup=comment_keyboard, parse_mode='HTML')
     return
 

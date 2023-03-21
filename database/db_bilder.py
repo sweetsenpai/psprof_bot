@@ -61,8 +61,9 @@ class Review(Base):
     review_text = sql.Column(name='review_text', type_=sql.String)
     review_rating = sql.Column(name='review_rating', type_=sql.Integer)
     review_moderation = sql.Column(name='review_moderation', type_=sql.BOOLEAN, default=False)
+    time = sql.Column(name='time', type_=sql.String, nullable=True)
 
-    def __int__(self, review_id, user_id, user_master, user_name, review_text, review_rating, review_moderation):
+    def __int__(self, review_id, user_id, user_master, user_name, review_text, review_rating, review_moderation, time):
         self.review_id = review_id
         self.user_id = user_id
         self.user_master = user_master
@@ -70,6 +71,7 @@ class Review(Base):
         self.review_text = review_text
         self.review_rating = review_rating
         self.review_moderation = review_moderation
+        self.time = time
 
     def __repr__(self):
         return f'{self.review_id}, {self.user_id}, {self.user_master},{self.user_name}, {self.review_text}, ' \

@@ -16,7 +16,10 @@ def create_topic_keyboard():
 
 
 async def new_master_topic(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text('Выбирите топик в который хотите добавить мастера:',
+    if update.message.from_user.id != 352354383 or update.message.from_user != 366585:
+        await update.message.reply_text('Я тебя не знаю!')
+        return ConversationHandler.END
+    await update.message.reply_text('Выберите топик в который хотите добавить мастера:',
                                     reply_markup=create_topic_keyboard())
     return TOPIC
 
