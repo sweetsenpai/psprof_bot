@@ -1,5 +1,6 @@
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, \
     AIORateLimiter, filters
+from datetime import time
 from admin.publish_content import aprove_review, decline_review, show_review, master_card, raiting_update
 from admin.topic_conversation import new_topic_conversation
 from admin.master_conversation import new_master_conversation
@@ -22,7 +23,7 @@ PORT = int(os.environ.get('PORT', '50'))
 def main() -> None:
     application = Application.builder().token(token).rate_limiter(AIORateLimiter(group_time_period=15, group_max_rate=0)).build()
 
-    application.add_handler(CommandHandler('menu', main_board))
+#    application.add_handler(CommandHandler('menu', main_board))
     application.add_handler(CallbackQueryHandler(pattern='PR,', callback=aprove_review))
     application.add_handler(CallbackQueryHandler(pattern='DR,', callback=decline_review))
     application.add_handler(CallbackQueryHandler(pattern='VR,', callback=show_review))
@@ -33,7 +34,7 @@ def main() -> None:
     application.add_handler(new_comment_conversation)
     application.add_handler(new_topic_conversation)
     application.add_handler(new_master_conversation)
-    application.job_queue.run_repeating(callback=raiting_update, interval=30, job_kwargs={'misfire_grace_time': 60})
+    application.job_queue.run_daily(callback=raiting_update, time=time.fromisoformat('02:00:00+03:00'), job_kwargs={'misfire_grace_time': 60})
     # application.run_polling()
     application.run_webhook(port=PORT, url_path=token, webhook_url=f'{get_https()}/{token}',
                             listen="0.0.0.0")
