@@ -82,27 +82,37 @@ async def master_card(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def raiting_update(context: ContextTypes.DEFAULT_TYPE):
     masters = session.query(Master).all()
+
     for master in masters:
         avg_reiting = 0
         reviews = session.query(Review).where(Review.user_master == master.master_id).where(Review.review_moderation == 1).all()
-        if len(reviews) == 0:
-            continue
-        for review in reviews:
-            avg_reiting += review.review_rating
-
-        avg_reiting = avg_reiting/len(reviews)
         msg = ''
         for key, values in master.__msgdict__().items():
             if values is not None:
-                msg += f'{key}: <i>{values}</i>\n'
-        msg += f'Рейтинг: {round(avg_reiting, 1)}⭐️'
-        review = InlineKeyboardButton(text='Отзывы', url=f'https://t.me/SPBprofBot?start=R{master.master_id}')
-        leav_review = InlineKeyboardButton(text='Оставить отзыв',
+                if values != 'WHAITING FOR UP DATE':
+                    msg += f'{key}: <i>{values}</i>\n'
+        for review in reviews:
+            avg_reiting += review.review_rating
+        if len(reviews) != 0:
+            avg_reiting = avg_reiting/len(reviews)
+            review = InlineKeyboardButton(text='Отзывы', url=f'https://t.me/SPBprofBot?start=R{master.master_id}')
+            leav_review = InlineKeyboardButton(text='Оставить отзыв',
                                                url=f'https://t.me/SPBprofBot?start={master.master_id}')
+            msg += f'Рейтинг: {round(avg_reiting, 1)}⭐️'
+            msg_keyboard = [[review, leav_review]]
+        elif len(reviews) == 0:
+            leav_review = InlineKeyboardButton(text='Оставить отзыв',
+                                               url=f'https://t.me/SPBprofBot?start={master.master_id}')
+            msg_keyboard = [[leav_review]]
+        # for key, values in master.__msgdict__().items():
+        #     if values is not None:
+        #         if values != 'WHAITING FOR UP DATE':
+        #             msg += f'{key}: <i>{values}</i>\n'
+        # msg += f'Рейтинг: {round(avg_reiting, 1)}⭐️'
 
         try:
             await context.bot.edit_message_text(chat_id='@spb_test123', message_id=master.msg_id, text=msg, parse_mode='HTML',
-                                                reply_markup=InlineKeyboardMarkup([[review], [leav_review]]),)
+                                                reply_markup=InlineKeyboardMarkup(msg_keyboard),)
         except error.BadRequest:
             continue
     return

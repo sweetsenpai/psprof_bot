@@ -51,6 +51,10 @@ class Master(Base):
         return {'Компания': self.company_name, 'Имя': self.name, 'Номер': self.phone, 'Адрес': self.addres, 'Специализация': self.specialization,
                 'Дополнительно': self.optional}
 
+    def __to_dict__(self):
+        return {'company_name':self.company_name, 'name': self.name, 'phone': self.phone, 'addres': self.addres,
+                'specialization': self.specialization, 'optional': self.optional}
+
 
 class Review(Base):
     __tablename__ = 'reviews'

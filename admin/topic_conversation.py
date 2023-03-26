@@ -1,12 +1,7 @@
 from telegram.ext import (ConversationHandler, ContextTypes, MessageHandler, filters, CommandHandler)
 from telegram import Update
-from database.db_bilder import Topic
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from database.db_bilder import Topic, session
 
-engine = create_engine('sqlite:///psprof.db', echo=True)
-Session = sessionmaker(bind=engine)
-session = Session()
 
 TOPIC_TITLE = range(1)
 

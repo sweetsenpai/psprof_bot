@@ -6,6 +6,7 @@ from admin.topic_conversation import new_topic_conversation
 from admin.master_conversation import new_master_conversation
 from user.comment_conversation import new_comment_conversation, main_board
 from admin.delete_content import del_master_menu, del_topic_menu, del_master
+from admin.update_masters import update_conversation
 from serverbuild.server import get_https
 import logging
 import os
@@ -30,11 +31,12 @@ def main() -> None:
     application.add_handler(CallbackQueryHandler(pattern='BM,', callback=master_card))
     application.add_handler(CallbackQueryHandler(pattern='DLT,', callback=del_master_menu))
     application.add_handler(CallbackQueryHandler(pattern='DLM,', callback=del_master))
-    application.add_handler(MessageHandler(filters.Regex('Удалить мастера'), del_topic_menu))
+#    application.add_handler(MessageHandler(filters.Regex('Удалить мастера'), del_topic_menu))
+    application.add_handler(update_conversation)
     application.add_handler(new_comment_conversation)
     application.add_handler(new_topic_conversation)
     application.add_handler(new_master_conversation)
-    application.job_queue.run_daily(callback=raiting_update, time=time.fromisoformat('02:00:00+03:00'), job_kwargs={'misfire_grace_time': 60})
+    application.job_queue.run_repeating(callback=raiting_update, interval=15, job_kwargs={'misfire_grace_time': 60})
     # application.run_polling()
     application.run_webhook(port=PORT, url_path=token, webhook_url=f'{get_https()}/{token}',
                             listen="0.0.0.0")
