@@ -36,7 +36,7 @@ def main() -> None:
     application.add_handler(new_comment_conversation)
     application.add_handler(new_topic_conversation)
     application.add_handler(new_master_conversation)
-    application.job_queue.run_repeating(callback=raiting_update, interval=15, job_kwargs={'misfire_grace_time': 60})
+#    application.job_queue.run_repeating(callback=raiting_update, interval=300, job_kwargs={'misfire_grace_time': 60})
     # application.run_polling()
     application.run_webhook(port=PORT, url_path=token, webhook_url=f'{get_https()}/{token}',
                             listen="0.0.0.0")
