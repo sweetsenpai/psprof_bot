@@ -6,6 +6,9 @@ MASTER, OPTION, ACTION, ANSWER, UPDATE = range(5)
 
 
 async def choice_topic(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.message.from_user.id not in [352354383, 366585]:
+        await update.message.reply_text('Я тебя не знаю!')
+        return ConversationHandler.END
     keyboard_topic = []
     for topic in session.query(Topic).all():
         keyboard_topic.append([InlineKeyboardButton(text=topic.title, callback_data=f'{topic.topic_id}')])

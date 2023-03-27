@@ -4,8 +4,8 @@ from database.db_bilder import session, Topic, Master
 
 
 async def del_topic_menu(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if update.message.from_user.id != 352354383:
-        await update.message.reply_text(f'Я тебя не знаю!')
+    if update.message.from_user.id not in [352354383, 366585]:
+        await update.message.reply_text('Я тебя не знаю!')
         return
     topics = session.query(Topic).all()
     topic_menu_button = []

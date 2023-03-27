@@ -7,10 +7,9 @@ TOPIC_TITLE = range(1)
 
 
 async def new_topic_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if update.message.from_user.id != 352354383:
-        if update.message.from_user != 366585:
-            await update.message.reply_text('Я тебя не знаю!')
-            return ConversationHandler.END
+    if update.message.from_user.id not in [352354383, 366585]:
+        await update.message.reply_text('Я тебя не знаю!')
+        return ConversationHandler.END
     await update.message.reply_text('Введите название нового топика')
     return TOPIC_TITLE
 
