@@ -126,6 +126,6 @@ new_master_conversation = ConversationHandler(
         ADDRES:  [MessageHandler(filters.TEXT, new_master_specialization)],
         SPEC:  [MessageHandler(filters.TEXT, new_master_optional)],
         OPTIONAL:  [MessageHandler(filters.TEXT, new_master_end)]
-    }, fallbacks=[CommandHandler('stop', stop_conversation)]
+    }, fallbacks=[CommandHandler('stop', stop_conversation)], conversation_timeout=120
 )
 

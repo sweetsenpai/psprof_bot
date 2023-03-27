@@ -33,4 +33,4 @@ new_topic_conversation = ConversationHandler(
     states={
         TOPIC_TITLE: [MessageHandler(filters.TEXT, new_topic_end)]
     },
-    fallbacks=[CommandHandler('stop', stop_conversation)])
+    fallbacks=[CommandHandler('stop', stop_conversation)], conversation_timeout=120)

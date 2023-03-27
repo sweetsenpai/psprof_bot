@@ -99,7 +99,7 @@ update_conversation = ConversationHandler(
         ANSWER: [CallbackQueryHandler(callback=action_answer)],
         UPDATE: [MessageHandler(filters.TEXT, update_data)]
     },
-    fallbacks=[CommandHandler('stop', stop_conversation)])
+    fallbacks=[CommandHandler('stop', stop_conversation)], conversation_timeout=120)
 
 
 
