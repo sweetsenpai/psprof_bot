@@ -16,9 +16,10 @@ def create_topic_keyboard():
 
 
 async def new_master_topic(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if update.message.from_user.id != 352354383 or update.message.from_user != 366585:
-        await update.message.reply_text('Я тебя не знаю!')
-        return ConversationHandler.END
+    if update.message.from_user.id != 352354383:
+        if update.message.from_user != 366585:
+            await update.message.reply_text('Я тебя не знаю!')
+            return ConversationHandler.END
     await update.message.reply_text('Выберите топик в который хотите добавить мастера:',
                                     reply_markup=create_topic_keyboard())
     return TOPIC
@@ -103,20 +104,20 @@ async def new_master_end(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def publish_new_master(context: ContextTypes.DEFAULT_TYPE,  master: Master):
-    leav_review = InlineKeyboardButton(text='Оставить отзыв', url=f'https://t.me/SPBprofBot?start={master.master_id}')
+    leav_review = InlineKeyboardButton(text='Оставить отзыв', url=f'https://t.me/psprofbot?start={master.master_id}')
     msg = ''
     for key, values in master.__msgdict__().items():
         if values is not None:
             msg += f'{key}: <i>{values}</i>\n'
 
-    x = await context.bot.send_message(chat_id='@spb_test123', message_thread_id=master.topic_master, text=msg,
+    x = await context.bot.send_message(chat_id='@PSPROF', message_thread_id=master.topic_master, text=msg,
                                        reply_markup=InlineKeyboardMarkup([[leav_review]]), parse_mode='HTML')
     master.msg_id = x['message_id']
     session.commit()
     return
 
 new_master_conversation = ConversationHandler(
-    entry_points=[MessageHandler(filters.Regex('Добавить нового мастера.'), new_master_topic)],
+    entry_points=[MessageHandler(filters.Regex('Добавить нового мастера'), new_master_topic)],
     states={
         TOPIC: [MessageHandler(filters.TEXT, new_master_company_name)],
         COMPANY: [MessageHandler(filters.TEXT, new_master_name)],
