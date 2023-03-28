@@ -21,7 +21,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     parametr = context.args
     if not parametr:
-        if update.message.from_user.id == 352354383 or update.message.from_user == 366585:
+        if update.message.from_user.id in [366585, 352354383]:
             await main_board(update, update)
             return ConversationHandler.END
         else:

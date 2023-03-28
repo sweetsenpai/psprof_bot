@@ -6,7 +6,7 @@ MASTER, OPTION, ACTION, ANSWER, UPDATE = range(5)
 
 
 async def choice_topic(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if update.message.from_user.id not in [352354383, 366585]:
+    if update.message.from_user.id not in [366585, 352354383]:
         await update.message.reply_text('Я тебя не знаю!')
         return ConversationHandler.END
     keyboard_topic = []
