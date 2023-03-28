@@ -90,7 +90,7 @@ async def raiting_update(context: ContextTypes.DEFAULT_TYPE):
         for key, values in master.__msgdict__().items():
             if values is not None:
                 if values != 'WHAITING FOR UP DATE':
-                    msg += f'{key}: <i>{values}</i>\n'
+                    msg += f'{key}: <i>{values}</i>\n\n'
         for review in reviews:
             avg_reiting += review.review_rating
         if len(reviews) != 0:
@@ -104,11 +104,6 @@ async def raiting_update(context: ContextTypes.DEFAULT_TYPE):
             leav_review = InlineKeyboardButton(text='Оставить отзыв',
                                                url=f'https://t.me/psprofbot?start={master.master_id}')
             msg_keyboard = [[leav_review]]
-        # for key, values in master.__msgdict__().items():
-        #     if values is not None:
-        #         if values != 'WHAITING FOR UP DATE':
-        #             msg += f'{key}: <i>{values}</i>\n'
-        # msg += f'Рейтинг: {round(avg_reiting, 1)}⭐️'
 
         try:
             await context.bot.edit_message_text(chat_id='@PSPROF', message_id=master.msg_id, text=msg, parse_mode='HTML',
