@@ -39,6 +39,7 @@ async def choice_option(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [InlineKeyboardButton(text='Название организации', callback_data=f'{master_id},company_name')],
         [InlineKeyboardButton(text='Имя', callback_data=f'{master_id},name')],
         [InlineKeyboardButton(text='Телефон', callback_data=f'{master_id},phone')],
+        [InlineKeyboardButton(text='Telegram', callback_data=f'{master_id},telegram')],
         [InlineKeyboardButton(text='Адрес', callback_data=f'{master_id},addres')],
         [InlineKeyboardButton(text='Специализация', callback_data=f'{master_id},specialization')],
         [InlineKeyboardButton(text='Опционально', callback_data=f'{master_id},optional')]

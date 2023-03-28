@@ -52,23 +52,29 @@ async def new_master_phone(update: Update, context: ContextTypes.DEFAULT_TYPE):
     else:
         session.query(Master).where(Master.optional == 'whaiting to update').one().name = master_name
         session.commit()
-    await update.message.reply_text(text='Введи контактный номер мастера или организации')
+    await update.message.reply_text(text='Введи контактный номер мастера или организации,  или нажми /skip если это поле не требуется.')
 
     return PHONE
 
 
 async def new_master_telegram(update: Update, context: ContextTypes.DEFAULT_TYPE):
     phone = update.message.text
-    session.query(Master).where(Master.optional == 'whaiting to update').one().phone = phone
-    session.commit()
+    if phone == '/skip':
+        pass
+    else:
+        session.query(Master).where(Master.optional == 'whaiting to update').one().phone = phone
+        session.commit()
     await update.message.reply_text(text='Введи telegram или нажми /skip если это поле не требуется.')
     return TELEGRAM
 
 
 async def new_master_addres(update: Update, context: ContextTypes.DEFAULT_TYPE):
     telegram = update.message.text
-    session.query(Master).where(Master.optional == 'whaiting to update').one().phone = telegram
-    session.commit()
+    if telegram == '/skip':
+        pass
+    else:
+        session.query(Master).where(Master.optional == 'whaiting to update').one().telegram = telegram
+        session.commit()
     await update.message.reply_text(text='Введи адрес мастера/организации или нажми /skip если это поле не требуется.')
     return ADDRES
 
