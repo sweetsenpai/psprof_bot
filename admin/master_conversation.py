@@ -3,7 +3,7 @@ from telegram import Update, ReplyKeyboardMarkup, KeyboardButton, InlineKeyboard
 from database.db_bilder import Topic, Master, session
 from admin.topic_conversation import stop_conversation
 
-TOPIC, COMPANY, NAME, PHONE, ADDRES, SPEC, OPTIONAL = range(7)
+TOPIC, COMPANY, NAME, PHONE, TELEGRAM, ADDRES, SPEC, OPTIONAL = range(8)
 
 
 def create_topic_keyboard():
@@ -57,9 +57,17 @@ async def new_master_phone(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return PHONE
 
 
-async def new_master_addres(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def new_master_telegram(update: Update, context: ContextTypes.DEFAULT_TYPE):
     phone = update.message.text
     session.query(Master).where(Master.optional == 'whaiting to update').one().phone = phone
+    session.commit()
+    await update.message.reply_text(text='Введи telegram или нажми /skip если это поле не требуется.')
+    return TELEGRAM
+
+
+async def new_master_addres(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    telegram = update.message.text
+    session.query(Master).where(Master.optional == 'whaiting to update').one().phone = telegram
     session.commit()
     await update.message.reply_text(text='Введи адрес мастера/организации или нажми /skip если это поле не требуется.')
     return ADDRES
@@ -98,7 +106,7 @@ async def new_master_end(update: Update, context: ContextTypes.DEFAULT_TYPE):
         new_master.optional = optional
         session.commit()
     await publish_new_master(context, new_master)
-    await update.message.reply_text('Новый мастер успешно добавлен в БД и запись о нем опубликованна в соответствующем топике.')
+    await update.message.reply_text('Новый мастер успешно добавлен в БД и запись о нем опубликована в соответствующем топике.')
     return ConversationHandler.END
 
 
@@ -121,7 +129,8 @@ new_master_conversation = ConversationHandler(
         TOPIC: [MessageHandler(filters.TEXT, new_master_company_name)],
         COMPANY: [MessageHandler(filters.TEXT, new_master_name)],
         NAME:  [MessageHandler(filters.TEXT, new_master_phone)],
-        PHONE:  [MessageHandler(filters.TEXT, new_master_addres)],
+        PHONE:  [MessageHandler(filters.TEXT, new_master_telegram)],
+        TELEGRAM: [MessageHandler(filters.TEXT, new_master_addres)],
         ADDRES:  [MessageHandler(filters.TEXT, new_master_specialization)],
         SPEC:  [MessageHandler(filters.TEXT, new_master_optional)],
         OPTIONAL:  [MessageHandler(filters.TEXT, new_master_end)]
