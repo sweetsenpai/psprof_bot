@@ -4,8 +4,6 @@ import os
 db_path = 'sqlite:///' + os.environ['DB']
 Base = declarative_base()
 
-# Creat DataBase tables
-
 
 class Topic(Base):
     __tablename__ = 'topics'
@@ -23,7 +21,7 @@ class Topic(Base):
 class Master(Base):
     __tablename__ = 'masters'
     master_id = sql.Column(name='master_id', type_=sql.Integer, primary_key=True)
-    topic_master = sql.Column(sql.Integer, sql.ForeignKey('topics.topic_id'))
+    topic_master = sql.Column(sql.Integer, sql.ForeignKey('topics.topic_id', ondelete="CASCADE"))
     msg_id = sql.Column(name='msg_id', type_=sql.Integer)
     company_name = sql.Column(name='company_name', type_=sql.String)
     name = sql.Column(name='name', type_=sql.String)
@@ -60,7 +58,7 @@ class Review(Base):
     __tablename__ = 'reviews'
     review_id = sql.Column(name='review_id', type_=sql.Integer, primary_key=True)
     user_id = sql.Column(name='user_id', type_=sql.Integer)
-    user_master = sql.Column(sql.Integer, sql.ForeignKey('masters.master_id'))
+    user_master = sql.Column(sql.Integer, sql.ForeignKey('masters.master_id', ondelete="CASCADE"))
     user_name = sql.Column(name='user_name', type_=sql.String)
     review_text = sql.Column(name='review_text', type_=sql.String)
     review_rating = sql.Column(name='review_rating', type_=sql.Integer)

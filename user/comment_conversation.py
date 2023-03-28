@@ -12,7 +12,8 @@ RAITING, COMMENT = range(2)
 async def main_board(update: Update, context: ContextTypes.DEFAULT_TYPE):
     admin_keyboard = ReplyKeyboardMarkup([[KeyboardButton('Создать новый топик')],
                                           [KeyboardButton('Добавить нового мастера')],
-                                          [KeyboardButton('Изменить информацию о мастере')]])
+                                          [KeyboardButton('Изменить информацию о мастере')],
+                                          [KeyboardButton('Удалить мастера из БД')]])
     await update.message.reply_text(text='Выбери действие', reply_markup=admin_keyboard)
     return
 
@@ -21,7 +22,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     parametr = context.args
     if not parametr:
-        if update.message.from_user.id == 352354383 or update.message.from_user == 366585:
+        if update.message.from_user.id in [366585, 352354383]:
             await main_board(update, update)
             return ConversationHandler.END
         else:
