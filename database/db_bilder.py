@@ -26,31 +26,35 @@ class Master(Base):
     company_name = sql.Column(name='company_name', type_=sql.String)
     name = sql.Column(name='name', type_=sql.String)
     phone = sql.Column(name='phone', type_=sql.String)
+    telegram = sql.Column(name='Telegram', type_=sql.String)
     addres = sql.Column(name='addres', type_=sql.String)
     specialization = sql.Column(name='specialization', type_=sql.String)
     optional = sql.Column(name='optional', type_=sql.String)
 
-    def __int__(self, master_id, msg_id, topic_master, company_name, name, phone, addres, specialization, optional):
+    def __int__(self, master_id, msg_id, topic_master, company_name, name, telegram, phone, addres, specialization, optional):
         self.master_id = master_id
         self.msg_id = msg_id
         self.topic_master = topic_master
         self.company_name = company_name
         self.name = name
         self.phone = phone
+        self.telegram = telegram
         self.addres = addres
         self.specialization = specialization
         self.optional = optional
 
     def __repr__(self):
-        return f'{self.master_id},{self.msg_id} ,{self.topic_master}, {self.company_name},{self.name}, {self.phone}, {self.addres},' \
+        return f'{self.master_id},{self.msg_id} ,{self.topic_master}, {self.company_name},{self.name}, {self.telegram},' \
+               f' {self.phone}, {self.addres},' \
                f' {self.addres}, {self.specialization}, {self.optional}'
 
     def __msgdict__(self):
-        return {'Компания': self.company_name, 'Имя': self.name, 'Номер': self.phone, 'Адрес': self.addres, 'Специализация': self.specialization,
+        return {'Компания': self.company_name, 'Имя': self.name, 'Номер': self.phone, 'Телеграм': self.telegram,
+                'Адрес': self.addres, 'Специализация': self.specialization,
                 'Дополнительно': self.optional}
 
     def __to_dict__(self):
-        return {'company_name':self.company_name, 'name': self.name, 'phone': self.phone, 'addres': self.addres,
+        return {'company_name': self.company_name, 'name': self.name, 'phone': self.phone, 'Telegram': self.telegram, 'addres': self.addres,
                 'specialization': self.specialization, 'optional': self.optional}
 
 
