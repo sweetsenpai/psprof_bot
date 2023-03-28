@@ -12,7 +12,8 @@ RAITING, COMMENT = range(2)
 async def main_board(update: Update, context: ContextTypes.DEFAULT_TYPE):
     admin_keyboard = ReplyKeyboardMarkup([[KeyboardButton('Создать новый топик')],
                                           [KeyboardButton('Добавить нового мастера')],
-                                          [KeyboardButton('Изменить информацию о мастере')]])
+                                          [KeyboardButton('Изменить информацию о мастере')],
+                                          [KeyboardButton('Удалить мастера из БД')]])
     await update.message.reply_text(text='Выбери действие', reply_markup=admin_keyboard)
     return
 
