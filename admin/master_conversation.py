@@ -121,7 +121,10 @@ async def publish_new_master(context: ContextTypes.DEFAULT_TYPE,  master: Master
     msg = ''
     for key, values in master.__msgdict__().items():
         if values is not None:
-            msg += f'{key}: <i>{values}</i>\n\n'
+            if key == 'Телефон':
+                msg += f'<b>{key}<b>: <tt>{values}</tt>\n\n'
+            else:
+                msg += f'<b>{key}</b>: {values}\n\n'
 
     x = await context.bot.send_message(chat_id='@PSPROF', message_thread_id=master.topic_master, text=msg,
                                        reply_markup=InlineKeyboardMarkup([[leav_review]]), parse_mode='HTML')

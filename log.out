@@ -1,4 +1,5 @@
 nohup: ignoring input
+<<<<<<< HEAD
 2023-03-23 20:27:21,045 INFO sqlalchemy.engine.Engine BEGIN (implicit)
 2023-03-23 20:27:21,045 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("topics")
 2023-03-23 20:27:21,045 INFO sqlalchemy.engine.Engine [raw sql] ()
@@ -200,3 +201,375 @@ WHERE reviews.user_master = ? AND reviews.review_moderation = ?
 2023-03-26 02:00:00,421 INFO sqlalchemy.engine.Engine [cached since 1.728e+05s ago] (4, 1)
 2023-03-26 02:00:00,421 - sqlalchemy.engine.Engine - INFO - [cached since 1.728e+05s ago] (4, 1)
 2023-03-26 02:00:00,421 - apscheduler.executors.default - INFO - Job "raiting_update (trigger: cron[day_of_week='sun,mon,tue,wed,thu,fri,sat', hour='2', minute='0', second='0'], next run at: 2023-03-27 02:00:00 UTC+03:00)" executed successfully
+=======
+2023-03-28 17:34:43,913 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2023-03-28 17:34:43,913 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("topics")
+2023-03-28 17:34:43,913 INFO sqlalchemy.engine.Engine [raw sql] ()
+2023-03-28 17:34:43,914 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("masters")
+2023-03-28 17:34:43,914 INFO sqlalchemy.engine.Engine [raw sql] ()
+2023-03-28 17:34:43,914 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("reviews")
+2023-03-28 17:34:43,914 INFO sqlalchemy.engine.Engine [raw sql] ()
+2023-03-28 17:34:43,915 INFO sqlalchemy.engine.Engine COMMIT
+/root/psprof/psprof_bot/user/comment_conversation.py:69: PTBUserWarning: If 'per_message=False', 'CallbackQueryHandler' will not be tracked for every message. Read this FAQ entry to learn more about the per_* settings: https://github.com/python-telegram-bot/python-telegram-bot/wiki/Frequently-Asked-Questions#what-do-the-per_-settings-in-conversationhandler-do.
+  new_comment_conversation = ConversationHandler(
+/root/psprof/psprof_bot/admin/update_masters.py:97: PTBUserWarning: If 'per_message=False', 'CallbackQueryHandler' will not be tracked for every message. Read this FAQ entry to learn more about the per_* settings: https://github.com/python-telegram-bot/python-telegram-bot/wiki/Frequently-Asked-Questions#what-do-the-per_-settings-in-conversationhandler-do.
+  update_conversation = ConversationHandler(
+2023-03-28 17:34:44,123 - pyngrok.process - INFO - Updating authtoken for default "config_path" of "ngrok_path": /root/psprof/bot_env/lib/python3.10/site-packages/pyngrok/bin/ngrok
+2023-03-28 17:34:44,139 - pyngrok.ngrok - INFO - Opening tunnel named: http-50-b31ed3de-0e8a-48b2-8a15-cb4247fc386b
+2023-03-28 17:34:44,153 - pyngrok.process.ngrok - INFO - t=2023-03-28T17:34:44+0300 lvl=info msg="no configuration paths supplied"
+2023-03-28 17:34:44,153 - pyngrok.process.ngrok - INFO - t=2023-03-28T17:34:44+0300 lvl=info msg="using configuration at default config path" path=/root/.ngrok2/ngrok.yml
+2023-03-28 17:34:44,154 - pyngrok.process.ngrok - INFO - t=2023-03-28T17:34:44+0300 lvl=info msg="open config file" path=/root/.ngrok2/ngrok.yml err=nil
+2023-03-28 17:34:44,155 - pyngrok.process.ngrok - WARNING - t=2023-03-28T17:34:44+0300 lvl=warn msg="can't bind default web address, trying alternatives" obj=web addr=127.0.0.1:4040
+2023-03-28 17:34:44,156 - pyngrok.process.ngrok - INFO - t=2023-03-28T17:34:44+0300 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4042
+2023-03-28 17:34:44,645 - pyngrok.process.ngrok - INFO - t=2023-03-28T17:34:44+0300 lvl=info msg="tunnel session started" obj=tunnels.session
+2023-03-28 17:34:44,646 - pyngrok.process.ngrok - INFO - t=2023-03-28T17:34:44+0300 lvl=info msg="client session established" obj=csess id=2d0674aedcc2
+2023-03-28 17:34:44,657 - pyngrok.process.ngrok - INFO - t=2023-03-28T17:34:44+0300 lvl=info msg=start pg=/api/tunnels id=9805a8bfba9c9f3e
+2023-03-28 17:34:44,657 - pyngrok.process.ngrok - INFO - t=2023-03-28T17:34:44+0300 lvl=info msg=end pg=/api/tunnels id=9805a8bfba9c9f3e status=200 dur=643.544µs
+2023-03-28 17:34:44,658 - pyngrok.process.ngrok - INFO - t=2023-03-28T17:34:44+0300 lvl=info msg=start pg=/api/tunnels id=abcefb21a359c440
+2023-03-28 17:34:44,658 - pyngrok.process.ngrok - INFO - t=2023-03-28T17:34:44+0300 lvl=info msg=end pg=/api/tunnels id=abcefb21a359c440 status=200 dur=152.255µs
+2023-03-28 17:34:44,668 - pyngrok.process.ngrok - INFO - t=2023-03-28T17:34:44+0300 lvl=info msg=start pg=/api/tunnels id=2d90db683a5358fc
+2023-03-28 17:34:44,811 - pyngrok.process.ngrok - INFO - t=2023-03-28T17:34:44+0300 lvl=info msg="started tunnel" obj=tunnels name=http-50-b31ed3de-0e8a-48b2-8a15-cb4247fc386b addr=http://localhost:50 url=https://e12a-92-63-100-36.ngrok.io
+2023-03-28 17:34:44,812 - pyngrok.process.ngrok - INFO - t=2023-03-28T17:34:44+0300 lvl=info msg=end pg=/api/tunnels id=2d90db683a5358fc status=201 dur=143.488557ms
+2023-03-28 17:34:45,083 - apscheduler.scheduler - INFO - Scheduler started
+2023-03-28 17:34:45,084 - telegram.ext._application - INFO - Application started
+2023-03-28 18:40:40,728 - pyngrok.process.ngrok - INFO - t=2023-03-28T18:40:40+0300 lvl=info msg="join connections" obj=join id=e9fb74c7006f l=127.0.0.1:50 r=91.108.6.93:42870
+2023-03-28 18:40:44,585 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2023-03-28 18:40:44,585 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-03-28 18:40:44,591 INFO sqlalchemy.engine.Engine SELECT topics.topic_id AS topics_topic_id, topics.title AS topics_title 
+FROM topics
+2023-03-28 18:40:44,591 - sqlalchemy.engine.Engine - INFO - SELECT topics.topic_id AS topics_topic_id, topics.title AS topics_title 
+FROM topics
+2023-03-28 18:40:44,592 INFO sqlalchemy.engine.Engine [generated in 0.00053s] ()
+2023-03-28 18:40:44,592 - sqlalchemy.engine.Engine - INFO - [generated in 0.00053s] ()
+2023-03-28 18:40:44,775 - apscheduler.scheduler - INFO - Added job "_trigger_timeout" to job store "default"
+2023-03-28 18:40:50,623 - apscheduler.scheduler - INFO - Removed job aee8a1eea91d4dd79d6e94c167829122
+2023-03-28 18:40:50,626 INFO sqlalchemy.engine.Engine SELECT topics.topic_id AS topics_topic_id, topics.title AS topics_title 
+FROM topics 
+WHERE topics.title = ?
+2023-03-28 18:40:50,626 - sqlalchemy.engine.Engine - INFO - SELECT topics.topic_id AS topics_topic_id, topics.title AS topics_title 
+FROM topics 
+WHERE topics.title = ?
+2023-03-28 18:40:50,626 INFO sqlalchemy.engine.Engine [generated in 0.00047s] ('Ремонт велосипедов и самокатов',)
+2023-03-28 18:40:50,626 - sqlalchemy.engine.Engine - INFO - [generated in 0.00047s] ('Ремонт велосипедов и самокатов',)
+2023-03-28 18:40:50,630 INFO sqlalchemy.engine.Engine INSERT INTO masters (topic_master, msg_id, company_name, name, phone, "Telegram", addres, specialization, optional) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+2023-03-28 18:40:50,630 - sqlalchemy.engine.Engine - INFO - INSERT INTO masters (topic_master, msg_id, company_name, name, phone, "Telegram", addres, specialization, optional) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+2023-03-28 18:40:50,630 INFO sqlalchemy.engine.Engine [generated in 0.00035s] (283, None, None, None, None, None, None, None, 'whaiting to update')
+2023-03-28 18:40:50,630 - sqlalchemy.engine.Engine - INFO - [generated in 0.00035s] (283, None, None, None, None, None, None, None, 'whaiting to update')
+2023-03-28 18:40:50,631 INFO sqlalchemy.engine.Engine COMMIT
+2023-03-28 18:40:50,631 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-03-28 18:40:50,807 - apscheduler.scheduler - INFO - Added job "_trigger_timeout" to job store "default"
+2023-03-28 18:41:04,531 - apscheduler.scheduler - INFO - Removed job 33a5b6ddb1ad446686ace6dffabd3dc5
+2023-03-28 18:41:04,533 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2023-03-28 18:41:04,533 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-03-28 18:41:04,535 INFO sqlalchemy.engine.Engine SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.optional = ?
+2023-03-28 18:41:04,535 - sqlalchemy.engine.Engine - INFO - SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.optional = ?
+2023-03-28 18:41:04,536 INFO sqlalchemy.engine.Engine [generated in 0.00041s] ('whaiting to update',)
+2023-03-28 18:41:04,536 - sqlalchemy.engine.Engine - INFO - [generated in 0.00041s] ('whaiting to update',)
+2023-03-28 18:41:04,538 INFO sqlalchemy.engine.Engine UPDATE masters SET company_name=? WHERE masters.master_id = ?
+2023-03-28 18:41:04,538 - sqlalchemy.engine.Engine - INFO - UPDATE masters SET company_name=? WHERE masters.master_id = ?
+2023-03-28 18:41:04,539 INFO sqlalchemy.engine.Engine [generated in 0.00035s] ('Reacto bikes', 1)
+2023-03-28 18:41:04,539 - sqlalchemy.engine.Engine - INFO - [generated in 0.00035s] ('Reacto bikes', 1)
+2023-03-28 18:41:04,540 INFO sqlalchemy.engine.Engine COMMIT
+2023-03-28 18:41:04,540 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-03-28 18:41:04,766 - apscheduler.scheduler - INFO - Added job "_trigger_timeout" to job store "default"
+2023-03-28 18:41:07,529 - apscheduler.scheduler - INFO - Removed job 319093e1214e4d439d0422df5035fc5e
+2023-03-28 18:41:07,697 - apscheduler.scheduler - INFO - Added job "_trigger_timeout" to job store "default"
+2023-03-28 18:41:17,581 - apscheduler.scheduler - INFO - Removed job a4995f0da5c84637b72bc1b443b7bf7c
+2023-03-28 18:41:17,582 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2023-03-28 18:41:17,582 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-03-28 18:41:17,582 INFO sqlalchemy.engine.Engine SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.optional = ?
+2023-03-28 18:41:17,582 - sqlalchemy.engine.Engine - INFO - SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.optional = ?
+2023-03-28 18:41:17,582 INFO sqlalchemy.engine.Engine [cached since 13.05s ago] ('whaiting to update',)
+2023-03-28 18:41:17,582 - sqlalchemy.engine.Engine - INFO - [cached since 13.05s ago] ('whaiting to update',)
+2023-03-28 18:41:17,584 INFO sqlalchemy.engine.Engine UPDATE masters SET phone=? WHERE masters.master_id = ?
+2023-03-28 18:41:17,584 - sqlalchemy.engine.Engine - INFO - UPDATE masters SET phone=? WHERE masters.master_id = ?
+2023-03-28 18:41:17,585 INFO sqlalchemy.engine.Engine [generated in 0.00025s] ('+7 931 598 21 33', 1)
+2023-03-28 18:41:17,585 - sqlalchemy.engine.Engine - INFO - [generated in 0.00025s] ('+7 931 598 21 33', 1)
+2023-03-28 18:41:17,585 INFO sqlalchemy.engine.Engine COMMIT
+2023-03-28 18:41:17,585 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-03-28 18:41:17,759 - apscheduler.scheduler - INFO - Added job "_trigger_timeout" to job store "default"
+2023-03-28 18:41:32,731 - apscheduler.scheduler - INFO - Removed job a5a3d7d652b0430486aa6be2c61bbb14
+2023-03-28 18:41:32,733 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2023-03-28 18:41:32,733 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-03-28 18:41:32,734 INFO sqlalchemy.engine.Engine SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.optional = ?
+2023-03-28 18:41:32,734 - sqlalchemy.engine.Engine - INFO - SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.optional = ?
+2023-03-28 18:41:32,734 INFO sqlalchemy.engine.Engine [cached since 28.2s ago] ('whaiting to update',)
+2023-03-28 18:41:32,734 - sqlalchemy.engine.Engine - INFO - [cached since 28.2s ago] ('whaiting to update',)
+2023-03-28 18:41:32,736 INFO sqlalchemy.engine.Engine UPDATE masters SET "Telegram"=? WHERE masters.master_id = ?
+2023-03-28 18:41:32,736 - sqlalchemy.engine.Engine - INFO - UPDATE masters SET "Telegram"=? WHERE masters.master_id = ?
+2023-03-28 18:41:32,736 INFO sqlalchemy.engine.Engine [generated in 0.00025s] ('@reactobikes', 1)
+2023-03-28 18:41:32,736 - sqlalchemy.engine.Engine - INFO - [generated in 0.00025s] ('@reactobikes', 1)
+2023-03-28 18:41:32,736 INFO sqlalchemy.engine.Engine COMMIT
+2023-03-28 18:41:32,736 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-03-28 18:41:33,056 - apscheduler.scheduler - INFO - Added job "_trigger_timeout" to job store "default"
+2023-03-28 18:41:42,882 - apscheduler.scheduler - INFO - Removed job 69bc223bd66d4c57a1823a29a6068d3c
+2023-03-28 18:41:42,883 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2023-03-28 18:41:42,883 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-03-28 18:41:42,884 INFO sqlalchemy.engine.Engine SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.optional = ?
+2023-03-28 18:41:42,884 - sqlalchemy.engine.Engine - INFO - SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.optional = ?
+2023-03-28 18:41:42,884 INFO sqlalchemy.engine.Engine [cached since 38.35s ago] ('whaiting to update',)
+2023-03-28 18:41:42,884 - sqlalchemy.engine.Engine - INFO - [cached since 38.35s ago] ('whaiting to update',)
+2023-03-28 18:41:42,885 INFO sqlalchemy.engine.Engine UPDATE masters SET addres=? WHERE masters.master_id = ?
+2023-03-28 18:41:42,885 - sqlalchemy.engine.Engine - INFO - UPDATE masters SET addres=? WHERE masters.master_id = ?
+2023-03-28 18:41:42,886 INFO sqlalchemy.engine.Engine [generated in 0.00028s] ('Ленина, 26', 1)
+2023-03-28 18:41:42,886 - sqlalchemy.engine.Engine - INFO - [generated in 0.00028s] ('Ленина, 26', 1)
+2023-03-28 18:41:42,886 INFO sqlalchemy.engine.Engine COMMIT
+2023-03-28 18:41:42,886 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-03-28 18:41:43,084 - apscheduler.scheduler - INFO - Added job "_trigger_timeout" to job store "default"
+2023-03-28 18:41:53,310 - apscheduler.scheduler - INFO - Removed job be35fb8881c14de9b23e4d7e771fe541
+2023-03-28 18:41:53,312 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2023-03-28 18:41:53,312 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-03-28 18:41:53,312 INFO sqlalchemy.engine.Engine SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.optional = ?
+2023-03-28 18:41:53,312 - sqlalchemy.engine.Engine - INFO - SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.optional = ?
+2023-03-28 18:41:53,312 INFO sqlalchemy.engine.Engine [cached since 48.78s ago] ('whaiting to update',)
+2023-03-28 18:41:53,312 - sqlalchemy.engine.Engine - INFO - [cached since 48.78s ago] ('whaiting to update',)
+2023-03-28 18:41:53,315 INFO sqlalchemy.engine.Engine UPDATE masters SET specialization=? WHERE masters.master_id = ?
+2023-03-28 18:41:53,315 - sqlalchemy.engine.Engine - INFO - UPDATE masters SET specialization=? WHERE masters.master_id = ?
+2023-03-28 18:41:53,315 INFO sqlalchemy.engine.Engine [generated in 0.00034s] ('Полное техническое обслуживание велосипеда перед/после сезона. Все работы по велосипедам любой сложности, продажа комплектующих и расходников. Бесплатная диагностика. Сезонное хранение велосипеда (включает в себя качественное хранение в межсезонье и техническое обслуживание).', 1)
+2023-03-28 18:41:53,315 - sqlalchemy.engine.Engine - INFO - [generated in 0.00034s] ('Полное техническое обслуживание велосипеда перед/после сезона. Все работы по велосипедам любой сложности, продажа комплектующих и расходников. Бесплатная диагностика. Сезонное хранение велосипеда (включает в себя качественное хранение в межсезонье и техническое обслуживание).', 1)
+2023-03-28 18:41:53,316 INFO sqlalchemy.engine.Engine COMMIT
+2023-03-28 18:41:53,316 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-03-28 18:41:53,554 - apscheduler.scheduler - INFO - Added job "_trigger_timeout" to job store "default"
+2023-03-28 18:41:55,644 - apscheduler.scheduler - INFO - Removed job f0a9247edddf438fbc448290798dcbd1
+2023-03-28 18:41:55,645 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2023-03-28 18:41:55,645 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-03-28 18:41:55,646 INFO sqlalchemy.engine.Engine SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.optional = ?
+2023-03-28 18:41:55,646 - sqlalchemy.engine.Engine - INFO - SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.optional = ?
+2023-03-28 18:41:55,646 INFO sqlalchemy.engine.Engine [cached since 51.11s ago] ('whaiting to update',)
+2023-03-28 18:41:55,646 - sqlalchemy.engine.Engine - INFO - [cached since 51.11s ago] ('whaiting to update',)
+2023-03-28 18:41:55,648 INFO sqlalchemy.engine.Engine UPDATE masters SET optional=? WHERE masters.master_id = ?
+2023-03-28 18:41:55,648 - sqlalchemy.engine.Engine - INFO - UPDATE masters SET optional=? WHERE masters.master_id = ?
+2023-03-28 18:41:55,648 INFO sqlalchemy.engine.Engine [generated in 0.00022s] (None, 1)
+2023-03-28 18:41:55,648 - sqlalchemy.engine.Engine - INFO - [generated in 0.00022s] (None, 1)
+2023-03-28 18:41:55,648 INFO sqlalchemy.engine.Engine COMMIT
+2023-03-28 18:41:55,648 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-03-28 18:41:55,653 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2023-03-28 18:41:55,653 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-03-28 18:41:55,654 INFO sqlalchemy.engine.Engine SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.master_id = ?
+2023-03-28 18:41:55,654 - sqlalchemy.engine.Engine - INFO - SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.master_id = ?
+2023-03-28 18:41:55,655 INFO sqlalchemy.engine.Engine [generated in 0.00032s] (1,)
+2023-03-28 18:41:55,655 - sqlalchemy.engine.Engine - INFO - [generated in 0.00032s] (1,)
+2023-03-28 18:41:55,783 INFO sqlalchemy.engine.Engine UPDATE masters SET msg_id=? WHERE masters.master_id = ?
+2023-03-28 18:41:55,783 - sqlalchemy.engine.Engine - INFO - UPDATE masters SET msg_id=? WHERE masters.master_id = ?
+2023-03-28 18:41:55,783 INFO sqlalchemy.engine.Engine [generated in 0.00049s] (1085, 1)
+2023-03-28 18:41:55,783 - sqlalchemy.engine.Engine - INFO - [generated in 0.00049s] (1085, 1)
+2023-03-28 18:41:55,784 INFO sqlalchemy.engine.Engine COMMIT
+2023-03-28 18:41:55,784 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-03-28 18:51:30,886 - pyngrok.process.ngrok - INFO - t=2023-03-28T18:51:30+0300 lvl=info msg="join connections" obj=join id=1297b684ab1d l=127.0.0.1:50 r=91.108.6.93:39074
+2023-03-28 18:52:02,717 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2023-03-28 18:52:02,717 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-03-28 18:52:02,719 INFO sqlalchemy.engine.Engine INSERT INTO reviews (user_id, user_master, user_name, review_text, review_rating, review_moderation, time) VALUES (?, ?, ?, ?, ?, ?, ?)
+2023-03-28 18:52:02,719 - sqlalchemy.engine.Engine - INFO - INSERT INTO reviews (user_id, user_master, user_name, review_text, review_rating, review_moderation, time) VALUES (?, ?, ?, ?, ?, ?, ?)
+2023-03-28 18:52:02,719 INFO sqlalchemy.engine.Engine [generated in 0.00037s] (198328041, 1, 'prokopenko_e', 'in progress', None, 0, '2023-03-28 18:52')
+2023-03-28 18:52:02,719 - sqlalchemy.engine.Engine - INFO - [generated in 0.00037s] (198328041, 1, 'prokopenko_e', 'in progress', None, 0, '2023-03-28 18:52')
+2023-03-28 18:52:02,720 INFO sqlalchemy.engine.Engine COMMIT
+2023-03-28 18:52:02,720 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-03-28 18:52:04,798 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2023-03-28 18:52:04,798 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-03-28 18:52:04,801 INFO sqlalchemy.engine.Engine SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_id = ? AND reviews.review_text = ?
+ LIMIT ? OFFSET ?
+2023-03-28 18:52:04,801 - sqlalchemy.engine.Engine - INFO - SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_id = ? AND reviews.review_text = ?
+ LIMIT ? OFFSET ?
+2023-03-28 18:52:04,801 INFO sqlalchemy.engine.Engine [generated in 0.00036s] (198328041, 'in progress', 1, 0)
+2023-03-28 18:52:04,801 - sqlalchemy.engine.Engine - INFO - [generated in 0.00036s] (198328041, 'in progress', 1, 0)
+2023-03-28 18:52:04,803 INFO sqlalchemy.engine.Engine UPDATE reviews SET review_rating=? WHERE reviews.review_id = ?
+2023-03-28 18:52:04,803 - sqlalchemy.engine.Engine - INFO - UPDATE reviews SET review_rating=? WHERE reviews.review_id = ?
+2023-03-28 18:52:04,803 INFO sqlalchemy.engine.Engine [generated in 0.00028s] ('5', 1)
+2023-03-28 18:52:04,803 - sqlalchemy.engine.Engine - INFO - [generated in 0.00028s] ('5', 1)
+2023-03-28 18:52:04,804 INFO sqlalchemy.engine.Engine COMMIT
+2023-03-28 18:52:04,804 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-03-28 18:52:21,530 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2023-03-28 18:52:21,530 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-03-28 18:52:21,531 INFO sqlalchemy.engine.Engine SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_id = ? AND reviews.review_text = ?
+ LIMIT ? OFFSET ?
+2023-03-28 18:52:21,531 - sqlalchemy.engine.Engine - INFO - SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_id = ? AND reviews.review_text = ?
+ LIMIT ? OFFSET ?
+2023-03-28 18:52:21,531 INFO sqlalchemy.engine.Engine [cached since 16.73s ago] (198328041, 'in progress', 1, 0)
+2023-03-28 18:52:21,531 - sqlalchemy.engine.Engine - INFO - [cached since 16.73s ago] (198328041, 'in progress', 1, 0)
+2023-03-28 18:52:21,533 INFO sqlalchemy.engine.Engine UPDATE reviews SET review_text=? WHERE reviews.review_id = ?
+2023-03-28 18:52:21,533 - sqlalchemy.engine.Engine - INFO - UPDATE reviews SET review_text=? WHERE reviews.review_id = ?
+2023-03-28 18:52:21,533 INFO sqlalchemy.engine.Engine [generated in 0.00026s] ('👍', 1)
+2023-03-28 18:52:21,533 - sqlalchemy.engine.Engine - INFO - [generated in 0.00026s] ('👍', 1)
+2023-03-28 18:52:21,533 INFO sqlalchemy.engine.Engine COMMIT
+2023-03-28 18:52:21,533 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-03-28 18:52:21,706 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2023-03-28 18:52:21,706 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-03-28 18:52:21,708 INFO sqlalchemy.engine.Engine SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.review_id = ?
+2023-03-28 18:52:21,708 - sqlalchemy.engine.Engine - INFO - SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.review_id = ?
+2023-03-28 18:52:21,708 INFO sqlalchemy.engine.Engine [generated in 0.00027s] (1,)
+2023-03-28 18:52:21,708 - sqlalchemy.engine.Engine - INFO - [generated in 0.00027s] (1,)
+2023-03-28 18:52:21,710 INFO sqlalchemy.engine.Engine SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.master_id = ?
+2023-03-28 18:52:21,710 - sqlalchemy.engine.Engine - INFO - SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.master_id = ?
+2023-03-28 18:52:21,710 INFO sqlalchemy.engine.Engine [generated in 0.00027s] (1,)
+2023-03-28 18:52:21,710 - sqlalchemy.engine.Engine - INFO - [generated in 0.00027s] (1,)
+2023-03-29 01:20:14,544 - pyngrok.process.ngrok - ERROR - t=2023-03-29T01:20:14+0300 lvl=eror msg="heartbeat timeout, terminating session" obj=csess id=91faa9a4db0e clientid=64494749c8c8c8f0825617b81073a673
+2023-03-29 01:20:14,545 - pyngrok.process.ngrok - ERROR - t=2023-03-29T01:20:14+0300 lvl=eror msg="session closed, starting reconnect loop" obj=csess id=2d0674aedcc2 err="session closed"
+2023-03-29 01:20:24,544 - pyngrok.process.ngrok - ERROR - t=2023-03-29T01:20:24+0300 lvl=eror msg="failed to reconnect session" obj=csess id=2d0674aedcc2 err="dial tcp 3.134.73.173:443: i/o timeout"
+2023-03-29 01:20:35,045 - pyngrok.process.ngrok - ERROR - t=2023-03-29T01:20:35+0300 lvl=eror msg="failed to reconnect session" obj=csess id=2d0674aedcc2 err="dial tcp 3.134.73.173:443: i/o timeout"
+2023-03-29 01:20:36,356 - pyngrok.process.ngrok - INFO - t=2023-03-29T01:20:36+0300 lvl=info msg="tunnel session started" obj=tunnels.session
+2023-03-29 01:20:36,496 - pyngrok.process.ngrok - INFO - t=2023-03-29T01:20:36+0300 lvl=info msg="client session established" obj=csess id=2d0674aedcc2
+2023-03-30 11:19:05,195 - pyngrok.process.ngrok - INFO - t=2023-03-30T11:19:05+0300 lvl=info msg="join connections" obj=join id=2888ba5f1e68 l=127.0.0.1:50 r=91.108.6.93:38686
+2023-03-30 11:19:22,645 INFO sqlalchemy.engine.Engine SELECT topics.topic_id AS topics_topic_id, topics.title AS topics_title 
+FROM topics
+2023-03-30 11:19:22,645 - sqlalchemy.engine.Engine - INFO - SELECT topics.topic_id AS topics_topic_id, topics.title AS topics_title 
+FROM topics
+2023-03-30 11:19:22,645 INFO sqlalchemy.engine.Engine [cached since 1.463e+05s ago] ()
+2023-03-30 11:19:22,645 - sqlalchemy.engine.Engine - INFO - [cached since 1.463e+05s ago] ()
+2023-03-30 11:19:22,859 - apscheduler.scheduler - INFO - Added job "_trigger_timeout" to job store "default"
+2023-03-30 11:19:33,878 - apscheduler.scheduler - INFO - Removed job cfe60c78a79a4ae2b79e18ff16cefbba
+2023-03-30 11:19:33,880 INFO sqlalchemy.engine.Engine SELECT topics.topic_id AS topics_topic_id, topics.title AS topics_title 
+FROM topics 
+WHERE topics.title = ?
+2023-03-30 11:19:33,880 - sqlalchemy.engine.Engine - INFO - SELECT topics.topic_id AS topics_topic_id, topics.title AS topics_title 
+FROM topics 
+WHERE topics.title = ?
+2023-03-30 11:19:33,880 INFO sqlalchemy.engine.Engine [cached since 1.463e+05s ago] ('Ремонт мелкой бытовой техники',)
+2023-03-30 11:19:33,880 - sqlalchemy.engine.Engine - INFO - [cached since 1.463e+05s ago] ('Ремонт мелкой бытовой техники',)
+2023-03-30 11:19:33,883 INFO sqlalchemy.engine.Engine INSERT INTO masters (topic_master, msg_id, company_name, name, phone, "Telegram", addres, specialization, optional) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+2023-03-30 11:19:33,883 - sqlalchemy.engine.Engine - INFO - INSERT INTO masters (topic_master, msg_id, company_name, name, phone, "Telegram", addres, specialization, optional) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+2023-03-30 11:19:33,883 INFO sqlalchemy.engine.Engine [cached since 1.463e+05s ago] (195, None, None, None, None, None, None, None, 'whaiting to update')
+2023-03-30 11:19:33,883 - sqlalchemy.engine.Engine - INFO - [cached since 1.463e+05s ago] (195, None, None, None, None, None, None, None, 'whaiting to update')
+2023-03-30 11:19:33,886 INFO sqlalchemy.engine.Engine COMMIT
+2023-03-30 11:19:33,886 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-03-30 11:19:34,053 - apscheduler.scheduler - INFO - Added job "_trigger_timeout" to job store "default"
+2023-03-30 11:19:37,268 - apscheduler.scheduler - INFO - Removed job 661fd3656118458a9c3afede1165307b
+2023-03-30 11:19:37,340 - apscheduler.scheduler - INFO - Added job "_trigger_timeout" to job store "default"
+2023-03-30 11:19:45,194 - apscheduler.scheduler - INFO - Removed job 018509baa713421b97be7d4ab1ef36ab
+2023-03-30 11:19:45,196 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2023-03-30 11:19:45,196 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-03-30 11:19:45,196 INFO sqlalchemy.engine.Engine SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.optional = ?
+2023-03-30 11:19:45,196 - sqlalchemy.engine.Engine - INFO - SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.optional = ?
+2023-03-30 11:19:45,196 INFO sqlalchemy.engine.Engine [cached since 1.463e+05s ago] ('whaiting to update',)
+2023-03-30 11:19:45,196 - sqlalchemy.engine.Engine - INFO - [cached since 1.463e+05s ago] ('whaiting to update',)
+2023-03-30 11:19:45,199 INFO sqlalchemy.engine.Engine UPDATE masters SET name=? WHERE masters.master_id = ?
+2023-03-30 11:19:45,199 - sqlalchemy.engine.Engine - INFO - UPDATE masters SET name=? WHERE masters.master_id = ?
+2023-03-30 11:19:45,199 INFO sqlalchemy.engine.Engine [generated in 0.00035s] ('Джамшед', 2)
+2023-03-30 11:19:45,199 - sqlalchemy.engine.Engine - INFO - [generated in 0.00035s] ('Джамшед', 2)
+2023-03-30 11:19:45,200 INFO sqlalchemy.engine.Engine COMMIT
+2023-03-30 11:19:45,200 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-03-30 11:19:45,383 - apscheduler.scheduler - INFO - Added job "_trigger_timeout" to job store "default"
+2023-03-30 11:19:54,722 - apscheduler.scheduler - INFO - Removed job c29e91aefbfd49feba61af4626017986
+2023-03-30 11:19:54,724 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2023-03-30 11:19:54,724 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-03-30 11:19:54,725 INFO sqlalchemy.engine.Engine SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.optional = ?
+2023-03-30 11:19:54,725 - sqlalchemy.engine.Engine - INFO - SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.optional = ?
+2023-03-30 11:19:54,725 INFO sqlalchemy.engine.Engine [cached since 1.463e+05s ago] ('whaiting to update',)
+2023-03-30 11:19:54,725 - sqlalchemy.engine.Engine - INFO - [cached since 1.463e+05s ago] ('whaiting to update',)
+2023-03-30 11:19:54,726 INFO sqlalchemy.engine.Engine UPDATE masters SET phone=? WHERE masters.master_id = ?
+2023-03-30 11:19:54,726 - sqlalchemy.engine.Engine - INFO - UPDATE masters SET phone=? WHERE masters.master_id = ?
+2023-03-30 11:19:54,726 INFO sqlalchemy.engine.Engine [cached since 1.463e+05s ago] ('+7 950 228 27 05', 2)
+2023-03-30 11:19:54,726 - sqlalchemy.engine.Engine - INFO - [cached since 1.463e+05s ago] ('+7 950 228 27 05', 2)
+2023-03-30 11:19:54,727 INFO sqlalchemy.engine.Engine COMMIT
+2023-03-30 11:19:54,727 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-03-30 11:19:54,893 - apscheduler.scheduler - INFO - Added job "_trigger_timeout" to job store "default"
+2023-03-30 11:20:04,209 - apscheduler.scheduler - INFO - Removed job 76c40489293040d6b319bab67d2b3bd7
+2023-03-30 11:20:04,211 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2023-03-30 11:20:04,211 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-03-30 11:20:04,216 INFO sqlalchemy.engine.Engine SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.optional = ?
+2023-03-30 11:20:04,216 - sqlalchemy.engine.Engine - INFO - SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.optional = ?
+2023-03-30 11:20:04,216 INFO sqlalchemy.engine.Engine [cached since 1.463e+05s ago] ('whaiting to update',)
+2023-03-30 11:20:04,216 - sqlalchemy.engine.Engine - INFO - [cached since 1.463e+05s ago] ('whaiting to update',)
+2023-03-30 11:20:04,218 INFO sqlalchemy.engine.Engine UPDATE masters SET "Telegram"=? WHERE masters.master_id = ?
+2023-03-30 11:20:04,218 - sqlalchemy.engine.Engine - INFO - UPDATE masters SET "Telegram"=? WHERE masters.master_id = ?
+2023-03-30 11:20:04,218 INFO sqlalchemy.engine.Engine [cached since 1.463e+05s ago] ('@Jay_Black8', 2)
+2023-03-30 11:20:04,218 - sqlalchemy.engine.Engine - INFO - [cached since 1.463e+05s ago] ('@Jay_Black8', 2)
+2023-03-30 11:20:04,218 INFO sqlalchemy.engine.Engine COMMIT
+2023-03-30 11:20:04,218 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-03-30 11:20:04,394 - apscheduler.scheduler - INFO - Added job "_trigger_timeout" to job store "default"
+2023-03-30 11:20:09,241 - apscheduler.scheduler - INFO - Removed job 54cb1d0dc3e94f46bb51f7365327307e
+2023-03-30 11:20:09,326 - apscheduler.scheduler - INFO - Added job "_trigger_timeout" to job store "default"
+2023-03-30 11:20:17,693 - apscheduler.scheduler - INFO - Removed job 634c029adebb46e484753d1968530880
+2023-03-30 11:20:17,866 - apscheduler.scheduler - INFO - Added job "_trigger_timeout" to job store "default"
+2023-03-30 11:20:20,222 - apscheduler.scheduler - INFO - Removed job 3c0db057408e47908ca22844f5b736f2
+2023-03-30 11:20:20,223 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2023-03-30 11:20:20,223 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-03-30 11:20:20,223 INFO sqlalchemy.engine.Engine SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.optional = ?
+2023-03-30 11:20:20,223 - sqlalchemy.engine.Engine - INFO - SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.optional = ?
+2023-03-30 11:20:20,224 INFO sqlalchemy.engine.Engine [cached since 1.464e+05s ago] ('whaiting to update',)
+2023-03-30 11:20:20,224 - sqlalchemy.engine.Engine - INFO - [cached since 1.464e+05s ago] ('whaiting to update',)
+2023-03-30 11:20:20,225 INFO sqlalchemy.engine.Engine UPDATE masters SET optional=? WHERE masters.master_id = ?
+2023-03-30 11:20:20,225 - sqlalchemy.engine.Engine - INFO - UPDATE masters SET optional=? WHERE masters.master_id = ?
+2023-03-30 11:20:20,225 INFO sqlalchemy.engine.Engine [cached since 1.463e+05s ago] (None, 2)
+2023-03-30 11:20:20,225 - sqlalchemy.engine.Engine - INFO - [cached since 1.463e+05s ago] (None, 2)
+2023-03-30 11:20:20,226 INFO sqlalchemy.engine.Engine COMMIT
+2023-03-30 11:20:20,226 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-03-30 11:20:20,231 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2023-03-30 11:20:20,231 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-03-30 11:20:20,231 INFO sqlalchemy.engine.Engine SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.master_id = ?
+2023-03-30 11:20:20,231 - sqlalchemy.engine.Engine - INFO - SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters."Telegram" AS "masters_Telegram", masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.master_id = ?
+2023-03-30 11:20:20,231 INFO sqlalchemy.engine.Engine [cached since 1.463e+05s ago] (2,)
+2023-03-30 11:20:20,231 - sqlalchemy.engine.Engine - INFO - [cached since 1.463e+05s ago] (2,)
+2023-03-30 11:20:20,436 INFO sqlalchemy.engine.Engine UPDATE masters SET msg_id=? WHERE masters.master_id = ?
+2023-03-30 11:20:20,436 - sqlalchemy.engine.Engine - INFO - UPDATE masters SET msg_id=? WHERE masters.master_id = ?
+2023-03-30 11:20:20,437 INFO sqlalchemy.engine.Engine [cached since 1.463e+05s ago] (1086, 2)
+2023-03-30 11:20:20,437 - sqlalchemy.engine.Engine - INFO - [cached since 1.463e+05s ago] (1086, 2)
+2023-03-30 11:20:20,437 INFO sqlalchemy.engine.Engine COMMIT
+2023-03-30 11:20:20,437 - sqlalchemy.engine.Engine - INFO - COMMIT
+2023-03-30 17:00:00,387 - telegram.ext._application - INFO - Application is stopping. This might take a moment.
+2023-03-30 17:00:00,387 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2023-03-30 17:00:00,398 - telegram.ext._application - INFO - Application.stop() complete
+>>>>>>> b8ef3b2c037cbb9fe5e9f1c77b0c215e1fa8bb4f
