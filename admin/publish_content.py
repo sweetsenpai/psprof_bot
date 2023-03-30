@@ -90,7 +90,10 @@ async def raiting_update(context: ContextTypes.DEFAULT_TYPE):
         for key, values in master.__msgdict__().items():
             if values is not None:
                 if values != 'WHAITING FOR UP DATE':
-                    msg += f'{key}: <i>{values}</i>\n\n'
+                    if key == 'Телефон':
+                        msg += f'<b>{key}<b>: <tt>{values}</tt>\n\n'
+                    else:
+                        msg += f'<b>{key}</b>: {values}\n\n'
         for review in reviews:
             avg_reiting += review.review_rating
         if len(reviews) != 0:
