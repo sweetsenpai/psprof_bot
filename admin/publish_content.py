@@ -90,8 +90,9 @@ async def raiting_update(context: ContextTypes.DEFAULT_TYPE):
         for key, values in master.__msgdict__().items():
             if values is not None:
                 if values != 'WHAITING FOR UP DATE':
-                    if key == 'Телефон':
-                        msg += f'<b>{key}<b>: <tt>{values}</tt>\n\n'
+                    if key == 'Номер':
+                        print(key, values)
+                        msg += f'<b>{key}<b>: <code>{values}</code>\n\n'
                     else:
                         msg += f'<b>{key}</b>: {values}\n\n'
         for review in reviews:
