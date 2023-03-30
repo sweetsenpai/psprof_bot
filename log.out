@@ -1,4 +1,207 @@
 nohup: ignoring input
+<<<<<<< HEAD
+2023-03-23 20:27:21,045 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2023-03-23 20:27:21,045 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("topics")
+2023-03-23 20:27:21,045 INFO sqlalchemy.engine.Engine [raw sql] ()
+2023-03-23 20:27:21,046 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("masters")
+2023-03-23 20:27:21,046 INFO sqlalchemy.engine.Engine [raw sql] ()
+2023-03-23 20:27:21,047 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("reviews")
+2023-03-23 20:27:21,047 INFO sqlalchemy.engine.Engine [raw sql] ()
+2023-03-23 20:27:21,047 INFO sqlalchemy.engine.Engine COMMIT
+/root/psprof/psprof_bot/user/comment_conversation.py:69: PTBUserWarning: If 'per_message=False', 'CallbackQueryHandler' will not be tracked for every message. Read this FAQ entry to learn more about the per_* settings: https://github.com/python-telegram-bot/python-telegram-bot/wiki/Frequently-Asked-Questions#what-do-the-per_-settings-in-conversationhandler-do.
+  new_comment_conversation = ConversationHandler(
+/root/psprof/psprof_bot/main.py:37: PTBUserWarning: Prior to v20.0 the `days` parameter was not aligned to that of cron's weekday scheme.We recommend double checking if the passed value is correct.
+  application.job_queue.run_daily(callback=raiting_update, time=time.fromisoformat('02:00:00+03:00'), job_kwargs={'misfire_grace_time': 60})
+2023-03-23 20:27:21,378 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2023-03-23 20:27:21,378 - pyngrok.process - INFO - Updating authtoken for default "config_path" of "ngrok_path": /root/psprof/bot_env/lib/python3.10/site-packages/pyngrok/bin/ngrok
+2023-03-23 20:27:21,538 - pyngrok.ngrok - INFO - Opening tunnel named: http-50-f2bfe06d-d073-45aa-8a0c-eb069991700b
+2023-03-23 20:27:21,552 - pyngrok.process.ngrok - INFO - t=2023-03-23T20:27:21+0300 lvl=info msg="no configuration paths supplied"
+2023-03-23 20:27:21,552 - pyngrok.process.ngrok - INFO - t=2023-03-23T20:27:21+0300 lvl=info msg="using configuration at default config path" path=/root/.ngrok2/ngrok.yml
+2023-03-23 20:27:21,553 - pyngrok.process.ngrok - INFO - t=2023-03-23T20:27:21+0300 lvl=info msg="open config file" path=/root/.ngrok2/ngrok.yml err=nil
+2023-03-23 20:27:21,555 - pyngrok.process.ngrok - WARNING - t=2023-03-23T20:27:21+0300 lvl=warn msg="can't bind default web address, trying alternatives" obj=web addr=127.0.0.1:4040
+2023-03-23 20:27:21,558 - pyngrok.process.ngrok - INFO - t=2023-03-23T20:27:21+0300 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4041
+2023-03-23 20:27:22,083 - pyngrok.process.ngrok - INFO - t=2023-03-23T20:27:22+0300 lvl=info msg="tunnel session started" obj=tunnels.session
+2023-03-23 20:27:22,083 - pyngrok.process.ngrok - INFO - t=2023-03-23T20:27:22+0300 lvl=info msg="client session established" obj=csess id=3937ed9187ce
+2023-03-23 20:27:22,097 - pyngrok.process.ngrok - INFO - t=2023-03-23T20:27:22+0300 lvl=info msg=start pg=/api/tunnels id=045f34fda62f0679
+2023-03-23 20:27:22,097 - pyngrok.process.ngrok - INFO - t=2023-03-23T20:27:22+0300 lvl=info msg=end pg=/api/tunnels id=045f34fda62f0679 status=200 dur=4.557249ms
+2023-03-23 20:27:22,098 - pyngrok.process.ngrok - INFO - t=2023-03-23T20:27:22+0300 lvl=info msg=start pg=/api/tunnels id=27d9227e5fa62400
+2023-03-23 20:27:22,098 - pyngrok.process.ngrok - INFO - t=2023-03-23T20:27:22+0300 lvl=info msg=end pg=/api/tunnels id=27d9227e5fa62400 status=200 dur=170.135µs
+2023-03-23 20:27:22,099 - pyngrok.process.ngrok - INFO - t=2023-03-23T20:27:22+0300 lvl=info msg=start pg=/api/tunnels id=ac3d6744a3ae017d
+2023-03-23 20:27:22,245 - pyngrok.process.ngrok - INFO - t=2023-03-23T20:27:22+0300 lvl=info msg="started tunnel" obj=tunnels name=http-50-f2bfe06d-d073-45aa-8a0c-eb069991700b addr=http://localhost:50 url=https://ff0a-92-63-100-36.ngrok.io
+2023-03-23 20:27:22,246 - pyngrok.process.ngrok - INFO - t=2023-03-23T20:27:22+0300 lvl=info msg=end pg=/api/tunnels id=ac3d6744a3ae017d status=201 dur=146.527898ms
+2023-03-23 20:27:22,525 - apscheduler.scheduler - INFO - Added job "raiting_update" to job store "default"
+2023-03-23 20:27:22,525 - apscheduler.scheduler - INFO - Scheduler started
+2023-03-23 20:27:22,526 - telegram.ext._application - INFO - Application started
+2023-03-24 02:00:00,100 - apscheduler.executors.default - INFO - Running job "raiting_update (trigger: cron[day_of_week='sun,mon,tue,wed,thu,fri,sat', hour='2', minute='0', second='0'], next run at: 2023-03-25 02:00:00 UTC+03:00)" (scheduled at 2023-03-24 02:00:00+03:00)
+2023-03-24 02:00:00,105 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2023-03-24 02:00:00,105 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2023-03-24 02:00:00,109 INFO sqlalchemy.engine.Engine SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters
+2023-03-24 02:00:00,109 - sqlalchemy.engine.Engine - INFO - SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters
+2023-03-24 02:00:00,109 INFO sqlalchemy.engine.Engine [generated in 0.00029s] ()
+2023-03-24 02:00:00,109 - sqlalchemy.engine.Engine - INFO - [generated in 0.00029s] ()
+2023-03-24 02:00:00,117 INFO sqlalchemy.engine.Engine SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-24 02:00:00,117 - sqlalchemy.engine.Engine - INFO - SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-24 02:00:00,117 INFO sqlalchemy.engine.Engine [generated in 0.00029s] (1, 1)
+2023-03-24 02:00:00,117 - sqlalchemy.engine.Engine - INFO - [generated in 0.00029s] (1, 1)
+2023-03-24 02:00:00,314 INFO sqlalchemy.engine.Engine SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-24 02:00:00,314 - sqlalchemy.engine.Engine - INFO - SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-24 02:00:00,314 INFO sqlalchemy.engine.Engine [cached since 0.197s ago] (2, 1)
+2023-03-24 02:00:00,314 - sqlalchemy.engine.Engine - INFO - [cached since 0.197s ago] (2, 1)
+2023-03-24 02:00:00,384 INFO sqlalchemy.engine.Engine SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-24 02:00:00,384 - sqlalchemy.engine.Engine - INFO - SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-24 02:00:00,384 INFO sqlalchemy.engine.Engine [cached since 0.2671s ago] (3, 1)
+2023-03-24 02:00:00,384 - sqlalchemy.engine.Engine - INFO - [cached since 0.2671s ago] (3, 1)
+2023-03-24 02:00:00,385 INFO sqlalchemy.engine.Engine SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-24 02:00:00,385 - sqlalchemy.engine.Engine - INFO - SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-24 02:00:00,386 INFO sqlalchemy.engine.Engine [cached since 0.2687s ago] (4, 1)
+2023-03-24 02:00:00,386 - sqlalchemy.engine.Engine - INFO - [cached since 0.2687s ago] (4, 1)
+2023-03-24 02:00:00,386 - apscheduler.executors.default - INFO - Job "raiting_update (trigger: cron[day_of_week='sun,mon,tue,wed,thu,fri,sat', hour='2', minute='0', second='0'], next run at: 2023-03-25 02:00:00 UTC+03:00)" executed successfully
+2023-03-24 12:18:38,485 - pyngrok.process.ngrok - INFO - t=2023-03-24T12:18:38+0300 lvl=info msg="join connections" obj=join id=95c8abc6119a l=127.0.0.1:50 r=91.108.6.109:60036
+2023-03-24 12:18:38,492 INFO sqlalchemy.engine.Engine SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-24 12:18:38,492 - sqlalchemy.engine.Engine - INFO - SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-24 12:18:38,492 INFO sqlalchemy.engine.Engine [cached since 3.712e+04s ago] (4, 1)
+2023-03-24 12:18:38,492 - sqlalchemy.engine.Engine - INFO - [cached since 3.712e+04s ago] (4, 1)
+-1 4
+2023-03-24 12:18:38,494 INFO sqlalchemy.engine.Engine SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-24 12:18:38,494 - sqlalchemy.engine.Engine - INFO - SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-24 12:18:38,494 INFO sqlalchemy.engine.Engine [cached since 3.712e+04s ago] (4, 1)
+2023-03-24 12:18:38,494 - sqlalchemy.engine.Engine - INFO - [cached since 3.712e+04s ago] (4, 1)
+2023-03-24 12:18:38,496 INFO sqlalchemy.engine.Engine SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.master_id = ?
+2023-03-24 12:18:38,496 - sqlalchemy.engine.Engine - INFO - SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters 
+WHERE masters.master_id = ?
+2023-03-24 12:18:38,497 INFO sqlalchemy.engine.Engine [generated in 0.00032s] (4,)
+2023-03-24 12:18:38,497 - sqlalchemy.engine.Engine - INFO - [generated in 0.00032s] (4,)
+2023-03-24 12:18:38,498 - telegram.ext._application - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/root/psprof/bot_env/lib/python3.10/site-packages/telegram/ext/_application.py", line 1063, in process_update
+    await coroutine
+  File "/root/psprof/bot_env/lib/python3.10/site-packages/telegram/ext/_conversationhandler.py", line 824, in handle_update
+    new_state: object = await handler.handle_update(
+  File "/root/psprof/bot_env/lib/python3.10/site-packages/telegram/ext/_handler.py", line 141, in handle_update
+    return await self.callback(update, context)
+  File "/root/psprof/psprof_bot/user/comment_conversation.py", line 31, in start
+    await show_review_star(update, context, master_id=int(master))
+  File "/root/psprof/psprof_bot/admin/publish_content.py", line 64, in show_review_star
+    msg = f'{comments[show_review_id].review_text}\n{comments[show_review_id].review_rating}/5⭐️\n\n<i>{comments[show_review_id].time}\n1/{len(comments)}</i>'
+IndexError: list index out of range
+2023-03-24 15:36:22,857 - pyngrok.process.ngrok - ERROR - t=2023-03-24T15:36:22+0300 lvl=eror msg="heartbeat timeout, terminating session" obj=csess id=f3f1153bed18 clientid=2a0e3f739ad93e4d5482b099ed1f5b41
+2023-03-24 15:36:22,858 - pyngrok.process.ngrok - ERROR - t=2023-03-24T15:36:22+0300 lvl=eror msg="session closed, starting reconnect loop" obj=csess id=3937ed9187ce err="session closed"
+2023-03-24 15:36:23,303 - pyngrok.process.ngrok - INFO - t=2023-03-24T15:36:23+0300 lvl=info msg="tunnel session started" obj=tunnels.session
+2023-03-24 15:36:23,445 - pyngrok.process.ngrok - INFO - t=2023-03-24T15:36:23+0300 lvl=info msg="client session established" obj=csess id=3937ed9187ce
+2023-03-24 21:03:17,328 - pyngrok.process.ngrok - ERROR - t=2023-03-24T21:03:17+0300 lvl=eror msg="heartbeat timeout, terminating session" obj=csess id=fa7cc1721251 clientid=2a0e3f739ad93e4d5482b099ed1f5b41
+2023-03-24 21:03:17,330 - pyngrok.process.ngrok - ERROR - t=2023-03-24T21:03:17+0300 lvl=eror msg="session closed, starting reconnect loop" obj=csess id=3937ed9187ce err="session closed"
+2023-03-24 21:03:17,808 - pyngrok.process.ngrok - INFO - t=2023-03-24T21:03:17+0300 lvl=info msg="tunnel session started" obj=tunnels.session
+2023-03-24 21:03:17,959 - pyngrok.process.ngrok - INFO - t=2023-03-24T21:03:17+0300 lvl=info msg="client session established" obj=csess id=3937ed9187ce
+2023-03-25 02:00:00,101 - apscheduler.executors.default - INFO - Running job "raiting_update (trigger: cron[day_of_week='sun,mon,tue,wed,thu,fri,sat', hour='2', minute='0', second='0'], next run at: 2023-03-26 02:00:00 UTC+03:00)" (scheduled at 2023-03-25 02:00:00+03:00)
+2023-03-25 02:00:00,103 INFO sqlalchemy.engine.Engine SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters
+2023-03-25 02:00:00,103 - sqlalchemy.engine.Engine - INFO - SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters
+2023-03-25 02:00:00,103 INFO sqlalchemy.engine.Engine [cached since 8.64e+04s ago] ()
+2023-03-25 02:00:00,103 - sqlalchemy.engine.Engine - INFO - [cached since 8.64e+04s ago] ()
+2023-03-25 02:00:00,105 INFO sqlalchemy.engine.Engine SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-25 02:00:00,105 - sqlalchemy.engine.Engine - INFO - SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-25 02:00:00,105 INFO sqlalchemy.engine.Engine [cached since 8.64e+04s ago] (1, 1)
+2023-03-25 02:00:00,105 - sqlalchemy.engine.Engine - INFO - [cached since 8.64e+04s ago] (1, 1)
+2023-03-25 02:00:00,300 INFO sqlalchemy.engine.Engine SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-25 02:00:00,300 - sqlalchemy.engine.Engine - INFO - SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-25 02:00:00,300 INFO sqlalchemy.engine.Engine [cached since 8.64e+04s ago] (2, 1)
+2023-03-25 02:00:00,300 - sqlalchemy.engine.Engine - INFO - [cached since 8.64e+04s ago] (2, 1)
+2023-03-25 02:00:00,387 INFO sqlalchemy.engine.Engine SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-25 02:00:00,387 - sqlalchemy.engine.Engine - INFO - SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-25 02:00:00,388 INFO sqlalchemy.engine.Engine [cached since 8.64e+04s ago] (3, 1)
+2023-03-25 02:00:00,388 - sqlalchemy.engine.Engine - INFO - [cached since 8.64e+04s ago] (3, 1)
+2023-03-25 02:00:00,389 INFO sqlalchemy.engine.Engine SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-25 02:00:00,389 - sqlalchemy.engine.Engine - INFO - SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-25 02:00:00,389 INFO sqlalchemy.engine.Engine [cached since 8.64e+04s ago] (4, 1)
+2023-03-25 02:00:00,389 - sqlalchemy.engine.Engine - INFO - [cached since 8.64e+04s ago] (4, 1)
+2023-03-25 02:00:00,389 - apscheduler.executors.default - INFO - Job "raiting_update (trigger: cron[day_of_week='sun,mon,tue,wed,thu,fri,sat', hour='2', minute='0', second='0'], next run at: 2023-03-26 02:00:00 UTC+03:00)" executed successfully
+2023-03-26 02:00:00,102 - apscheduler.executors.default - INFO - Running job "raiting_update (trigger: cron[day_of_week='sun,mon,tue,wed,thu,fri,sat', hour='2', minute='0', second='0'], next run at: 2023-03-27 02:00:00 UTC+03:00)" (scheduled at 2023-03-26 02:00:00+03:00)
+2023-03-26 02:00:00,106 INFO sqlalchemy.engine.Engine SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters
+2023-03-26 02:00:00,106 - sqlalchemy.engine.Engine - INFO - SELECT masters.master_id AS masters_master_id, masters.topic_master AS masters_topic_master, masters.msg_id AS masters_msg_id, masters.company_name AS masters_company_name, masters.name AS masters_name, masters.phone AS masters_phone, masters.addres AS masters_addres, masters.specialization AS masters_specialization, masters.optional AS masters_optional 
+FROM masters
+2023-03-26 02:00:00,106 INFO sqlalchemy.engine.Engine [cached since 1.728e+05s ago] ()
+2023-03-26 02:00:00,106 - sqlalchemy.engine.Engine - INFO - [cached since 1.728e+05s ago] ()
+2023-03-26 02:00:00,110 INFO sqlalchemy.engine.Engine SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-26 02:00:00,110 - sqlalchemy.engine.Engine - INFO - SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-26 02:00:00,110 INFO sqlalchemy.engine.Engine [cached since 1.728e+05s ago] (1, 1)
+2023-03-26 02:00:00,110 - sqlalchemy.engine.Engine - INFO - [cached since 1.728e+05s ago] (1, 1)
+2023-03-26 02:00:00,334 INFO sqlalchemy.engine.Engine SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-26 02:00:00,334 - sqlalchemy.engine.Engine - INFO - SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-26 02:00:00,335 INFO sqlalchemy.engine.Engine [cached since 1.728e+05s ago] (2, 1)
+2023-03-26 02:00:00,335 - sqlalchemy.engine.Engine - INFO - [cached since 1.728e+05s ago] (2, 1)
+2023-03-26 02:00:00,419 INFO sqlalchemy.engine.Engine SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-26 02:00:00,419 - sqlalchemy.engine.Engine - INFO - SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-26 02:00:00,419 INFO sqlalchemy.engine.Engine [cached since 1.728e+05s ago] (3, 1)
+2023-03-26 02:00:00,419 - sqlalchemy.engine.Engine - INFO - [cached since 1.728e+05s ago] (3, 1)
+2023-03-26 02:00:00,420 INFO sqlalchemy.engine.Engine SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-26 02:00:00,420 - sqlalchemy.engine.Engine - INFO - SELECT reviews.review_id AS reviews_review_id, reviews.user_id AS reviews_user_id, reviews.user_master AS reviews_user_master, reviews.user_name AS reviews_user_name, reviews.review_text AS reviews_review_text, reviews.review_rating AS reviews_review_rating, reviews.review_moderation AS reviews_review_moderation, reviews.time AS reviews_time 
+FROM reviews 
+WHERE reviews.user_master = ? AND reviews.review_moderation = ?
+2023-03-26 02:00:00,421 INFO sqlalchemy.engine.Engine [cached since 1.728e+05s ago] (4, 1)
+2023-03-26 02:00:00,421 - sqlalchemy.engine.Engine - INFO - [cached since 1.728e+05s ago] (4, 1)
+2023-03-26 02:00:00,421 - apscheduler.executors.default - INFO - Job "raiting_update (trigger: cron[day_of_week='sun,mon,tue,wed,thu,fri,sat', hour='2', minute='0', second='0'], next run at: 2023-03-27 02:00:00 UTC+03:00)" executed successfully
+=======
 2023-03-28 17:34:43,913 INFO sqlalchemy.engine.Engine BEGIN (implicit)
 2023-03-28 17:34:43,913 INFO sqlalchemy.engine.Engine PRAGMA main.table_info("topics")
 2023-03-28 17:34:43,913 INFO sqlalchemy.engine.Engine [raw sql] ()
@@ -369,3 +572,4 @@ WHERE masters.master_id = ?
 2023-03-30 17:00:00,387 - telegram.ext._application - INFO - Application is stopping. This might take a moment.
 2023-03-30 17:00:00,387 - apscheduler.scheduler - INFO - Scheduler has been shut down
 2023-03-30 17:00:00,398 - telegram.ext._application - INFO - Application.stop() complete
+>>>>>>> b8ef3b2c037cbb9fe5e9f1c77b0c215e1fa8bb4f
