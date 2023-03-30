@@ -91,7 +91,6 @@ async def raiting_update(context: ContextTypes.DEFAULT_TYPE):
             if values is not None:
                 if values != 'WHAITING FOR UP DATE':
                     if key == 'Номер':
-                        print(key, values)
                         msg += f'<b>{key}<b>: <code>{values}</code>\n\n'
                     else:
                         msg += f'<b>{key}</b>: {values}\n\n'
