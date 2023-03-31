@@ -1,6 +1,6 @@
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, \
-    AIORateLimiter, filters
-from datetime import time
+    AIORateLimiter, filters, ContextTypes
+from telegram import Update
 from admin.publish_content import aprove_review, decline_review, show_review, master_card, raiting_update
 from admin.topic_conversation import new_topic_conversation
 from admin.master_conversation import new_master_conversation
@@ -31,6 +31,7 @@ def main() -> None:
     application.add_handler(MessageHandler(filters.Regex('Удалить мастера из БД'), del_topic_menu))
     application.add_handler(CallbackQueryHandler(pattern='DLT,', callback=del_master_menu))
     application.add_handler(CallbackQueryHandler(pattern='DLM,', callback=del_master))
+    application.job_queue.run_repeating(callback=raiting_update, interval=300, job_kwargs={'misfire_grace_time': 60})
     application.add_handler(update_conversation)
     application.add_handler(new_comment_conversation)
     application.add_handler(new_topic_conversation)
