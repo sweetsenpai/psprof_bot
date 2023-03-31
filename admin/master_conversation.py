@@ -112,7 +112,7 @@ async def new_master_end(update: Update, context: ContextTypes.DEFAULT_TYPE):
         new_master.optional = optional
         session.commit()
     await publish_new_master(context, new_master)
-    await update.message.reply_text('Новый мастер успешно добавлен в БД и запись о нем опубликована в соответствующем топике.')
+    await update.message.reply_text('Новый мастер успешно добавлен в БД и запись о нем опубликована в соответствующем топике.\nВернуться в начало: /start')
     return ConversationHandler.END
 
 
