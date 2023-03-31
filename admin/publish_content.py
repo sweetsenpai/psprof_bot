@@ -84,6 +84,8 @@ async def raiting_update(context: ContextTypes.DEFAULT_TYPE):
     masters = session.query(Master).all()
 
     for master in masters:
+        if master.msg_id is None:
+            continue
         avg_reiting = 0
         reviews = session.query(Review).where(Review.user_master == master.master_id).where(Review.review_moderation == 1).all()
         msg = ''
