@@ -27,7 +27,7 @@ async def new_master_topic(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def new_master_company_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
     master_topic_label = update.message.text
     topic_master_id = session.query(Topic).where(Topic.title == master_topic_label).one().topic_id
-    session.add(Master(topic_master=topic_master_id, optional='whaiting to update'))
+    session.add(Master(topic_master=topic_master_id, optional='WHAITING FOR UP DATE'))
     session.commit()
     await update.message.reply_text(text='Введи название организации или нажми /skip если это поле не требуется.')
     return COMPANY
@@ -38,7 +38,7 @@ async def new_master_name(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if company_name == '/skip':
         pass
     else:
-        session.query(Master).where(Master.optional == 'whaiting to update').one().company_name = company_name
+        session.query(Master).where(Master.optional == 'WHAITING FOR UP DATE').one().company_name = company_name
         session.commit()
 
     await update.message.reply_text(text='Введи имя мастера или нажми /skip если это поле не требуется.')
@@ -50,7 +50,7 @@ async def new_master_phone(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if master_name == '/skip':
         pass
     else:
-        session.query(Master).where(Master.optional == 'whaiting to update').one().name = master_name
+        session.query(Master).where(Master.optional == 'WHAITING FOR UP DATE').one().name = master_name
         session.commit()
     await update.message.reply_text(text='Введи контактный номер мастера или организации,  или нажми /skip если это поле не требуется.')
 
@@ -58,11 +58,11 @@ async def new_master_phone(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def new_master_telegram(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    phone = update.message.text
+    phone = update.message.text.replace(' ','')
     if phone == '/skip':
         pass
     else:
-        session.query(Master).where(Master.optional == 'whaiting to update').one().phone = phone
+        session.query(Master).where(Master.optional == 'WHAITING FOR UP DATE').one().phone = phone
         session.commit()
     await update.message.reply_text(text='Введи telegram или нажми /skip если это поле не требуется.')
     return TELEGRAM
@@ -73,7 +73,7 @@ async def new_master_addres(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if telegram == '/skip':
         pass
     else:
-        session.query(Master).where(Master.optional == 'whaiting to update').one().telegram = telegram
+        session.query(Master).where(Master.optional == 'WHAITING FOR UP DATE').one().telegram = telegram
         session.commit()
     await update.message.reply_text(text='Введи адрес мастера/организации или нажми /skip если это поле не требуется.')
     return ADDRES
@@ -84,7 +84,7 @@ async def new_master_specialization(update: Update, context: ContextTypes.DEFAUL
     if addres == '/skip':
         pass
     else:
-        session.query(Master).where(Master.optional == 'whaiting to update').one().addres = addres
+        session.query(Master).where(Master.optional == 'WHAITING FOR UP DATE').one().addres = addres
         session.commit()
     await update.message.reply_text(text='Введи специализацию мастера или нажми /skip если это поле не требуется.')
     return SPEC
@@ -95,7 +95,7 @@ async def new_master_optional(update: Update, context: ContextTypes.DEFAULT_TYPE
     if spec == '/skip':
         pass
     else:
-        session.query(Master).where(Master.optional == 'whaiting to update').one().specialization = spec
+        session.query(Master).where(Master.optional == 'WHAITING FOR UP DATE').one().specialization = spec
         session.commit()
     await update.message.reply_text(text='Введи дополнительные данные которые могут быть полезны клиентам,'
                                          ' или нажми /skip если это поле не требуется.')
@@ -104,7 +104,7 @@ async def new_master_optional(update: Update, context: ContextTypes.DEFAULT_TYPE
 
 async def new_master_end(update: Update, context: ContextTypes.DEFAULT_TYPE):
     optional = update.message.text
-    new_master = session.query(Master).where(Master.optional == 'whaiting to update').one()
+    new_master = session.query(Master).where(Master.optional == 'WHAITING FOR UP DATE').one()
     if optional == '/skip':
         new_master.optional = None
         session.commit()
@@ -122,7 +122,7 @@ async def publish_new_master(context: ContextTypes.DEFAULT_TYPE,  master: Master
     for key, values in master.__msgdict__().items():
         if values is not None:
             if key == 'Номер':
-                msg += f'<b>{key}<b>: <code>{values}</code>\n\n'
+                msg += f'<b>{key}</b>: <code>{values}</code>\n\n'
             else:
                 msg += f'<b>{key}</b>: {values}\n\n'
 

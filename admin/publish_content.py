@@ -91,7 +91,7 @@ async def raiting_update(context: ContextTypes.DEFAULT_TYPE):
             if values is not None:
                 if values != 'WHAITING FOR UP DATE':
                     if key == 'Номер':
-                        msg += f'<b>{key}<b>: <code>{values}</code>\n\n'
+                        msg += f'<b>{key}</b>: <code>{values}</code>\n\n'
                     else:
                         msg += f'<b>{key}</b>: {values}\n\n'
         for review in reviews:
