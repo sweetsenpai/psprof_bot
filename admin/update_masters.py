@@ -1,6 +1,8 @@
+import telegram.error
 from telegram.ext import ContextTypes, ConversationHandler, MessageHandler, CallbackQueryHandler, CommandHandler, filters
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from database.db_bilder import session, Topic, Master
+from admin.publish_content import message_update
 
 MASTER, OPTION, ACTION, ANSWER, UPDATE = range(5)
 
@@ -20,11 +22,15 @@ async def choice_topic(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def choice_master(update: Update, context: ContextTypes.DEFAULT_TYPE):
     target_topic_id = int(update.callback_query.data)
     keyboard_master = []
-    for master in session.query(Master).where(Master.topic_master == target_topic_id).all():
-        if master.name is None:
+    masters = session.query(Master).where(Master.topic_master == target_topic_id).all()
+    if not masters:
+        await update.callback_query.edit_message_text(text='В данном топике пока нет мастеров')
+        return ConversationHandler.END
+    for master in masters:
+        if master.company_name is not None:
             keyboard_master.append([InlineKeyboardButton(text=f'{master.company_name}: {master.phone}',
                                                              callback_data=f'{master.master_id}')])
-        elif master.company_name is None:
+        elif master.name is not None:
             keyboard_master.append([InlineKeyboardButton(text=f'{master.name}: {master.phone}',
                                                              callback_data=f'{master.master_id}')])
     await update.callback_query.edit_message_text(text='Выберете мастера:',
@@ -39,7 +45,7 @@ async def choice_option(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [InlineKeyboardButton(text='Название организации', callback_data=f'{master_id},company_name')],
         [InlineKeyboardButton(text='Имя', callback_data=f'{master_id},name')],
         [InlineKeyboardButton(text='Телефон', callback_data=f'{master_id},phone')],
-        [InlineKeyboardButton(text='Telegram', callback_data=f'{master_id},telegram')],
+        [InlineKeyboardButton(text='Telegram', callback_data=f'{master_id},Telegram')],
         [InlineKeyboardButton(text='Адрес', callback_data=f'{master_id},addres')],
         [InlineKeyboardButton(text='Специализация', callback_data=f'{master_id},specialization')],
         [InlineKeyboardButton(text='Опционально', callback_data=f'{master_id},optional')]
@@ -51,6 +57,7 @@ async def choice_option(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def choice_action(update: Update, context: ContextTypes.DEFAULT_TYPE):
     data = update.callback_query.data
+    print(data)
     keyboard_action = [
         [InlineKeyboardButton(text='Изменить', callback_data=f'UP,{data}'),
          InlineKeyboardButton(text='Удалить', callback_data=f'DEL,{data}')]
@@ -63,7 +70,7 @@ async def action_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
     answer = update.callback_query.data.split(',')
 
     master = session.query(Master).where(Master.master_id == answer[1]).one()
-
+    print(master)
     for key in master.__to_dict__().keys():
         if key == answer[2]:
             if answer[0] == 'DEL':
@@ -86,6 +93,10 @@ async def update_data(update: Update, context: ContextTypes.DEFAULT_TYPE):
             if values == 'WHAITING FOR UP DATE':
                 setattr(master, key, new_data)
                 session.commit()
+                try:
+                    await message_update(update, context, master.master_id)
+                except telegram.error.BadRequest:
+                    continue
     await update.message.reply_text('Значение успешно обновлено.')
     return ConversationHandler.END
 
@@ -103,7 +114,7 @@ update_conversation = ConversationHandler(
         ANSWER: [CallbackQueryHandler(callback=action_answer)],
         UPDATE: [MessageHandler(filters.TEXT, update_data)]
     },
-    fallbacks=[CommandHandler('stop', stop_conversation)], conversation_timeout=120)
+    fallbacks=[CommandHandler('stop', stop_conversation)], conversation_timeout=600)
 
 
 

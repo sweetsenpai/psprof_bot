@@ -1,7 +1,11 @@
 import sqlalchemy as sql
 from sqlalchemy.orm import sessionmaker, declarative_base
 import os
-db_path = 'sqlite:///' + os.environ['DB']
+from dotenv import load_dotenv
+load_dotenv()
+
+
+db_path = 'sqlite:///' + os.environ.get("DB")
 Base = declarative_base()
 
 
@@ -26,36 +30,38 @@ class Master(Base):
     company_name = sql.Column(name='company_name', type_=sql.String)
     name = sql.Column(name='name', type_=sql.String)
     phone = sql.Column(name='phone', type_=sql.String)
-    telegram = sql.Column(name='Telegram', type_=sql.String)
+    Telegram = sql.Column(name='Telegram', type_=sql.String)
     addres = sql.Column(name='addres', type_=sql.String)
     specialization = sql.Column(name='specialization', type_=sql.String)
     optional = sql.Column(name='optional', type_=sql.String)
+    tg_url = sql.Column(name='tg_url', type_=sql.String)
 
-    def __int__(self, master_id, msg_id, topic_master, company_name, name, telegram, phone, addres, specialization, optional):
+    def __int__(self, master_id, msg_id, topic_master, company_name, name, Telegram, phone, addres, specialization, optional, tg_url):
         self.master_id = master_id
         self.msg_id = msg_id
         self.topic_master = topic_master
         self.company_name = company_name
         self.name = name
         self.phone = phone
-        self.telegram = telegram
+        self.telegram = Telegram
         self.addres = addres
         self.specialization = specialization
         self.optional = optional
+        self.tg_url = tg_url
 
     def __repr__(self):
-        return f'{self.master_id},{self.msg_id} ,{self.topic_master}, {self.company_name},{self.name}, {self.telegram},' \
+        return f'{self.master_id},{self.msg_id} ,{self.topic_master}, {self.company_name},{self.name}, {self.Telegram},' \
                f' {self.phone}, {self.addres},' \
-               f' {self.addres}, {self.specialization}, {self.optional}'
+               f' {self.addres}, {self.specialization}, {self.optional}, {self.tg_url}'
 
     def __msgdict__(self):
-        return {'Компания': self.company_name, 'Имя': self.name, 'Номер': self.phone, 'Телеграм': self.telegram,
+        return {'Компания': self.company_name, 'Имя': self.name, 'Номер': self.phone, 'Телеграм': self.Telegram,
                 'Адрес': self.addres, 'Специализация': self.specialization,
-                'Дополнительно': self.optional}
+                'Дополнительно': self.optional, 'Ссылка на телеграм': self.tg_url}
 
     def __to_dict__(self):
-        return {'company_name': self.company_name, 'name': self.name, 'phone': self.phone, 'Telegram': self.telegram, 'addres': self.addres,
-                'specialization': self.specialization, 'optional': self.optional}
+        return {'company_name': self.company_name, 'name': self.name, 'phone': self.phone, 'Telegram': self.Telegram, 'addres': self.addres,
+                'specialization': self.specialization, 'optional': self.optional, 'tg_url': self.tg_url}
 
 
 class Review(Base):
@@ -84,7 +90,7 @@ class Review(Base):
                f'{self.review_rating},{self.review_moderation}'
 
 
-if os.path.exists(db_path) is False:
+if not os.path.exists(db_path):
     engine = sql.create_engine('sqlite:///psprof.db', echo=True)
     Base.metadata.create_all(bind=engine)
     Session = sessionmaker(bind=engine)

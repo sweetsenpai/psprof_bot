@@ -1,3 +1,6 @@
+import asyncio
+
+import telegram.error
 from telegram.ext import ContextTypes
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, error
 from database.db_bilder import session, Review, Master
@@ -5,7 +8,12 @@ from database.db_bilder import session, Review, Master
 
 async def aprove_review(update: Update, context: ContextTypes.DEFAULT_TYPE):
     new_review_id = int(update.callback_query.data.split(',')[1])
-    session.query(Review).where(Review.review_id == new_review_id).one().review_moderation = True
+    review = session.query(Review).where(Review.review_id == new_review_id).one()
+    try:
+        await message_update(update, context, master_id=review.user_master)
+    except telegram.error.BadRequest:
+        pass
+    review.review_moderation = True
     session.commit()
     answer_id = update.callback_query.from_user.id
     await context.bot.sendMessage(chat_id=answer_id, text='Отзыв опубикован!')
@@ -36,7 +44,7 @@ async def show_review(update: Update, context: ContextTypes.DEFAULT_TYPE):
         show_review_id = 0
     comment_keyboard = InlineKeyboardMarkup([[InlineKeyboardButton(text='◀️', callback_data=f'VR,{show_master_id},{show_review_id + 1} '),
                                               InlineKeyboardButton(text='▶️', callback_data=f'VR,{show_master_id},{show_review_id - 1} ')],
-                                             [InlineKeyboardButton(text='Назад',  url=f'https://t.me/spb_test123/{master_msg}')]])
+                                             [InlineKeyboardButton(text='Назад',  url=f'https://t.me/PSPROF/{master_msg}')]])
     if abs(show_review_id)!=0:
         msg = f'{comments[show_review_id].review_text}\n{comments[show_review_id].review_rating}/5⭐️\n\n<i>{comments[show_review_id].time}\n{abs(show_review_id)}/{len(comments)}</i>'
     else:
@@ -48,10 +56,7 @@ async def show_review(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def show_review_star(update: Update, context: ContextTypes.DEFAULT_TYPE, master_id):
     show_master_id = master_id
-    comments = session.query(Review).where(Review.user_master == show_master_id).where(
-        Review.review_moderation == 1).all()
     show_review_id = -1
-    print(show_review_id, show_master_id)
     comments = session.query(Review).where(Review.user_master == show_master_id).where(Review.review_moderation == 1).all()
     master_msg = session.query(Master).where(Master.master_id == master_id).one().msg_id
     if len(comments) == abs(show_review_id):
@@ -59,7 +64,7 @@ async def show_review_star(update: Update, context: ContextTypes.DEFAULT_TYPE, m
     comment_keyboard = InlineKeyboardMarkup(
         [[InlineKeyboardButton(text='◀️', callback_data=f'VR,{show_master_id},{show_review_id + 1} '),
           InlineKeyboardButton(text='▶️', callback_data=f'VR,{show_master_id},{show_review_id - 1} ')],
-         [InlineKeyboardButton(text='Назад', url=f'https://t.me/spb_test123/{master_msg}')]])
+         [InlineKeyboardButton(text='Назад', url=f'https://t.me/PSPROF/{master_msg}')]])
 
     msg = f'{comments[show_review_id].review_text}\n{comments[show_review_id].review_rating}/5⭐️\n\n<i>{comments[show_review_id].time}\n1/{len(comments)}</i>'
     await update.message.reply_text(text=msg, reply_markup=comment_keyboard, parse_mode='HTML')
@@ -69,51 +74,52 @@ async def show_review_star(update: Update, context: ContextTypes.DEFAULT_TYPE, m
 async def master_card(update: Update, context: ContextTypes.DEFAULT_TYPE):
     show_card_master = int(update.callback_query.data.split(',')[1])
     master = session.query(Master).where(Master.master_id == show_card_master).one()
-    review = InlineKeyboardButton(text='Отзывы', callback_data=f'VR,{master.master_id},-1')
-    leav_review = InlineKeyboardButton(text='Оставить отзыв', url=f'https://t.me/SPBprofBot?start={master.master_id}')
     msg = ''
+    buttons_keyboard = []
     for key, values in master.__msgdict__().items():
         if values is not None:
-            msg += f'{key}: <i>{values}</i>\n'
-    await update.callback_query.edit_message_text(text=msg, reply_markup=InlineKeyboardMarkup([[review], [leav_review]]), parse_mode='HTML')
+            if key == 'Ссылка на телеграм':
+                buttons_keyboard.append(
+                    [InlineKeyboardButton(text='Написать в телеграм', url=f'https://t.me/{values}')])
+                continue
+            msg += f'<b>{key}</b>: {values}\n\n'
+    buttons_keyboard.append([InlineKeyboardButton(text='Отзывы', callback_data=f'VR,{master.master_id},-1')])
+    buttons_keyboard.append(
+        [InlineKeyboardButton(text='Оставить отзыв', url=f'https://t.me/psprofbot?start={master.master_id}')])
+    await update.callback_query.edit_message_text(text=msg, reply_markup=InlineKeyboardMarkup(buttons_keyboard), parse_mode='HTML')
 
     return
 
 
-async def raiting_update(context: ContextTypes.DEFAULT_TYPE):
-    masters = session.query(Master).all()
+async def message_update(update: Update, context: ContextTypes.DEFAULT_TYPE, master_id: int):
+    master_record = session.query(Master).where(Master.master_id == master_id).one()
+    reviews = session.query(Review).where(Review.user_master == master_record.master_id).where(Review.review_moderation == 1).all()
+    leav_review = InlineKeyboardButton(text='Оставить отзыв', url=f'https://t.me/psprofbot?start={master_record.master_id}')
+    show_reviews = InlineKeyboardButton(text='Отзывы', url=f'https://t.me/psprofbot?start=R{master_record.master_id}')
 
-    for master in masters:
-        if master.msg_id is None:
-            continue
+    msg = ''
+    buttons_keyboard = []
+    for key, values in master_record.__msgdict__().items():
+        if values is not None:
+            if key == 'Ссылка на телеграм':
+                buttons_keyboard.append(
+                    [InlineKeyboardButton(text='Написать в телеграм', url=f'https://t.me/{values}')])
+                continue
+            msg += f'<b>{key}</b>: {values}\n\n'
+
+    if not reviews:
+        buttons_keyboard.append([leav_review])
+    else:
+        buttons_keyboard.append([show_reviews])
+        buttons_keyboard.append([leav_review])
         avg_reiting = 0
-        reviews = session.query(Review).where(Review.user_master == master.master_id).where(Review.review_moderation == 1).all()
-        msg = ''
-        for key, values in master.__msgdict__().items():
-            if values is not None:
-                if values != 'WHAITING FOR UP DATE':
-                    if key == 'Номер':
-                        msg += f'<b>{key}</b>: <code>{values}</code>\n\n'
-                    else:
-                        msg += f'<b>{key}</b>: {values}\n\n'
         for review in reviews:
             avg_reiting += review.review_rating
         if len(reviews) != 0:
             avg_reiting = avg_reiting/len(reviews)
-            review = InlineKeyboardButton(text='Отзывы', url=f'https://t.me/psprofbot?start=R{master.master_id}')
-            leav_review = InlineKeyboardButton(text='Оставить отзыв',
-                                               url=f'https://t.me/psprofbot?start={master.master_id}')
-            msg += f'Рейтинг: {round(avg_reiting, 1)}⭐️'
-            msg_keyboard = [[review, leav_review]]
-        elif len(reviews) == 0:
-            leav_review = InlineKeyboardButton(text='Оставить отзыв',
-                                               url=f'https://t.me/psprofbot?start={master.master_id}')
-            msg_keyboard = [[leav_review]]
+        msg += f'Рейтинг: {round(avg_reiting, 1)}⭐️'
+    print(buttons_keyboard)
+    await context.bot.edit_message_text(chat_id='@PSPROF', message_id=master_record.msg_id,
+                                        text=msg, reply_markup=InlineKeyboardMarkup(buttons_keyboard), parse_mode='HTML')
 
-        try:
-            await context.bot.edit_message_text(chat_id='@PSPROF', message_id=master.msg_id, text=msg, parse_mode='HTML',
-                                                reply_markup=InlineKeyboardMarkup(msg_keyboard))
-        except error.BadRequest:
-            continue
     return
-
