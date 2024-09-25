@@ -129,7 +129,7 @@ async def new_master_end(update: Update, context: ContextTypes.DEFAULT_TYPE):
         # session.commit()
         context.user_data['optional'] = None
     else:
-        context.user_data['topic_id'] = optional
+        context.user_data['optional'] = optional
     session.add(Master(topic_master=context.user_data['topic_id'],
                                     company_name=context.user_data['company_name'],
                                     name=context.user_data['master_name'],

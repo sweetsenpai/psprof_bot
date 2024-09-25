@@ -56,7 +56,7 @@ async def leave_comment(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def user_chek_comment(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data['text'] = update.message.text
-    await update.message.reply_text('Проерьте ваш  комментарий перед отправкой')
+    await update.message.reply_text('Проверьте Ваш  комментарий перед отправкой')
     await update.message.reply_text(text=f"<i>{context.user_data['text']}</i>", parse_mode='HTML')
     await update.message.reply_text(text='Отправить сообщение в исходном виде?', reply_markup=ReplyKeyboardMarkup([[KeyboardButton(text='Да'), KeyboardButton(text='Исправить')]]))
     return REWRITE
@@ -104,7 +104,10 @@ new_comment_conversation = ConversationHandler(
 
 
 async def send_comment_to_modderation(context: ContextTypes.DEFAULT_TYPE, review: Review):
-    msg = f'НОВЫЙ ОТЗЫВ!\n Пользователь: @{review.user_name}\n Оценка: {review.review_rating}⭐️\n {review.review_text}'
+    master= session.query(Master).where(Master.master_id==review.user_master).one()
+    master_url = master.msg_id
+    master_topic = master.topic_master
+    msg = f'НОВЫЙ ОТЗЫВ!\nМастер:https://t.me/PSPROF/{master_topic}/{master_url}\nПользователь: @{review.user_name}\n Оценка: {review.review_rating}⭐️\n {review.review_text}'
     admin_review_keyboard = InlineKeyboardMarkup([[InlineKeyboardButton(text='Опубликовать', callback_data=f'PR,{review.review_id}'),
                                                    InlineKeyboardButton(text='Отклонить', callback_data=f'DR,{review.review_id}')]])
     await context.bot.sendMessage(chat_id=352354383, text=msg, reply_markup=admin_review_keyboard)

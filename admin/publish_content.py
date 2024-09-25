@@ -118,7 +118,6 @@ async def message_update(update: Update, context: ContextTypes.DEFAULT_TYPE, mas
         if len(reviews) != 0:
             avg_reiting = avg_reiting/len(reviews)
         msg += f'Рейтинг: {round(avg_reiting, 1)}⭐️'
-    print(buttons_keyboard)
     await context.bot.edit_message_text(chat_id='@PSPROF', message_id=master_record.msg_id,
                                         text=msg, reply_markup=InlineKeyboardMarkup(buttons_keyboard), parse_mode='HTML')
 
